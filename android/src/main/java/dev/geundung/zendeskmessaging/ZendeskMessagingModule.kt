@@ -116,6 +116,20 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     promise.resolve(null)
   }
 
+  @ReactMethod
+  fun handleNotification(remoteMessage: ReadableMap, promise: Promise) {
+    try {
+      val messageData = remoteMessage.toHashMap().toMap() as Map<String, String>
+      module.handleNotification(
+        context = reactContext,
+        messageData = messageData,
+        callback = { responsibility -> promise.resolve(responsibility) }
+      )
+    } catch (error: Exception) {
+      promise.reject(error)
+    }
+  }
+
   companion object {
     const val NAME = "ZendeskMessaging"
   }

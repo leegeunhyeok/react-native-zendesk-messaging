@@ -56,3 +56,11 @@ export function removeSubscription(subscription: EmitterSubscription) {
 export function removeAllListeners(type: ZendeskEventType) {
   return eventEmitter.removeAllListeners(type);
 }
+
+export function handleNotification(
+  remoteMessage: Record<string, string>
+): Promise<string> {
+  return Platform.OS === 'android'
+    ? ZendeskMessaging.handleNotification(remoteMessage)
+    : Promise.resolve(false);
+}

@@ -9,6 +9,7 @@ import zendesk.android.FailureCallback
 import zendesk.android.events.ZendeskEventListener
 import zendesk.android.messaging.MessagingFactory
 import zendesk.messaging.android.push.PushNotifications
+import zendesk.messaging.android.push.PushResponsibility
 
 fun interface Callback<T> {
   fun invoke(value: T)
@@ -59,4 +60,29 @@ class ZendeskNativeModule private constructor() {
 
   fun updatePushNotificationToken(newToken: String) =
     PushNotifications.updatePushNotificationToken(newToken)
+
+  fun handleNotification(context: Context,
+                         messageData: Map<String, String>,
+                         callback: Callback<String>?): Boolean {
+    var handled = true
+    when (PushNotifications.shouldBeDisplayed(messageData)) {
+      PushResponsibility.MESSAGING_SHOULD_DISPLAY -> {
+        PushNotifications.displayNotification(context, messageData)
+        callback?.invoke("MESSAGING_SHOULD_DISPLAY")
+      }
+      PushResponsibility.MESSAGING_SHOULD_NOT_DISPLAY -> {
+        callback?.invoke("MESSAGING_SHOULD_NOT_DISPLAY")
+      }
+      PushResponsibility.NOT_FROM_MESSAGING -> {
+        callback?.invoke("NOT_FROM_MESSAGING")
+        handled = false
+      }
+      else -> {
+        callback?.invoke("UNKNOWN")
+        handled = false
+      }
+    }
+
+    return handled
+  }
 }

@@ -30,7 +30,33 @@ class ZendeskNativeModule: NSObject {
     return Zendesk.instance?.messaging?.messagingViewController()
   }
 
+  @objc(updatePushNotificationToken:)
   func updatePushNotificationToken(_ token: Data) -> Void {
     PushNotifications.updatePushNotificationToken(token)
+  }
+
+  @objc(handleNotification:completionHandler:)
+  func handleNotification(_ userInfo: [AnyHashable : Any],
+                          withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) -> Bool {
+    var handled = true
+    let shouldBeDisplayed = PushNotifications.shouldBeDisplayed(userInfo)
+
+    switch shouldBeDisplayed {
+    case .messagingShouldDisplay:
+      if #available(iOS 14.0, *) {
+        completionHandler([.banner, .sound, .badge])
+      } else {
+        completionHandler([.alert, .sound, .badge])
+      }
+    case .messagingShouldNotDisplay:
+      completionHandler([])
+    case .notFromMessaging:
+      fallthrough
+    @unknown default:
+      handled = false
+      break
+    }
+
+    return handled
   }
 }
