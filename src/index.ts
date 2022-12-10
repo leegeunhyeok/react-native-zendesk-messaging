@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+import type { ZendeskInitializeConfig, ZendeskUser } from './types';
 
 const LINKING_ERROR =
   `The package 'react-native-zendesk-messaging' doesn't seem to be linked. Make sure: \n\n` +
@@ -17,6 +18,18 @@ const ZendeskMessaging = NativeModules.ZendeskMessaging
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return ZendeskMessaging.multiply(a, b);
+export function initialize(config: ZendeskInitializeConfig): Promise<void> {
+  return ZendeskMessaging.initialize(config);
+}
+
+export function login(token: string): Promise<ZendeskUser> {
+  return ZendeskMessaging.login(token);
+}
+
+export function logout(): Promise<void> {
+  return ZendeskMessaging.logout();
+}
+
+export function openMessagingView(): Promise<void> {
+  return ZendeskMessaging.openMessagingView();
 }
