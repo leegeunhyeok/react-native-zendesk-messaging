@@ -1,4 +1,4 @@
-package com.zendeskmessaging
+package dev.geundung.zendeskmessaging
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

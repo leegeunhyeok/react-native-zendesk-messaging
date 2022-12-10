@@ -1,4 +1,4 @@
-package com.zendeskmessaging
+package dev.geundung.zendeskmessaging
 
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -12,11 +12,24 @@ class ZendeskMessagingModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
-  fun multiply(a: Double, b: Double, promise: Promise) {
-    promise.resolve(a * b)
+  fun initialize(config: Map<String, String>, promise: Promise) {
+    promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun login(token: String, promise: Promise) {
+    promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun logout(promise: Promise) {
+    promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun showMessagingView(promise: Promise) {
+    promise.resolve(null)
   }
 
   companion object {
