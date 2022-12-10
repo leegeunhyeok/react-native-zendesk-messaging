@@ -1,5 +1,8 @@
 #import "AppDelegate.h"
 
+#import <UserNotifications/UserNotifications.h>
+#import <ZendeskNativeModule.h>
+
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -57,6 +60,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [self registerForPushNotifications];
   return YES;
 }
 
@@ -129,5 +133,37 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 
 #endif
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [ZendeskNativeModule updatePushNotificationToken:deviceToken];
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+        willPresentNotification:(UNNotification *)notification
+        withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+
+  id userInfo = notification.request.content.userInfo;
+  BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
+
+  if (isHandled) return;
+
+  // other push notifications code here
+
+  // If not handled, you should call the `completionHandler` before end of `userNotificationCenter` method
+  completionHandler(UNNotificationPresentationOptionNone);
+}
+
+- (void)registerForPushNotifications {
+  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  center.delegate = self;
+  [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge)
+  completionHandler:^(BOOL allowed, NSError * _Nullable error) {
+    if (allowed) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+      });
+    }
+  }];
+}
 
 @end
