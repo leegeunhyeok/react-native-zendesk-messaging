@@ -63,6 +63,13 @@ const App = () => {
   const handlePressLogin = () => runner(() => Zendesk.login(token));
   const handlePressLogout = () => runner(() => Zendesk.logout());
   const handlePressOpen = () => runner(() => Zendesk.openMessagingView());
+  const handlePressCount = () => {
+    runner(() =>
+      Zendesk.getUnreadMessageCount().then((count) =>
+        Alert.alert(`unread count: ${count}`)
+      )
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -86,6 +93,9 @@ const App = () => {
       </Section>
       <Section title="Chat" hideSeparator>
         <Button label="Open Messaging" onPress={handlePressOpen} />
+      </Section>
+      <Section title="Notifications" hideSeparator>
+        <Button label="Get unread count" onPress={handlePressCount} />
       </Section>
       {isLoading ? <LoadingView /> : null}
     </SafeAreaView>
