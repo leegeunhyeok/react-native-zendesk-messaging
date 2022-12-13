@@ -11,6 +11,7 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.modules.core.DeviceEventManagerModule
 
 import zendesk.android.events.ZendeskEvent
+import zendesk.android.pageviewevents.PageView
 import zendesk.messaging.android.DefaultMessagingFactory
 
 class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) :
@@ -114,6 +115,27 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     module.showMessaging(reactContext, Intent.FLAG_ACTIVITY_NEW_TASK)
 
     promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun sendPageViewEvent(event: ReadableMap, promise: Promise) {
+    if (!initialized) {
+      promise.reject(null, "Zendesk instance not initialized")
+    }
+
+    val pageTitle = event.getString("pageTitle")
+    val url = event.getString("pageTitle")
+    if (pageTitle == null || url == null) {
+      promise.reject(null, "invalid page view event")
+      return
+    }
+
+    val pageView = PageView(url = url, pageTitle = pageTitle)
+    module.sendPageViewEvent(
+      pageView = pageView,
+      successCallback = { _ -> promise.resolve(null) },
+      failureCallback = { error -> promise.reject(error) },
+    )
   }
 
   @ReactMethod

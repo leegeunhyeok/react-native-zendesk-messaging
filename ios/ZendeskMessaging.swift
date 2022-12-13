@@ -130,4 +130,30 @@ class ZendeskMessaging: RCTEventEmitter {
       resolve(nil)
     }
   }
+
+  @objc(sendPageViewEvent:resolver:rejecter:)
+  func sendPageViewEvent(event: [String: String], resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    if !initialized {
+      reject(nil, "Zendesk instance not initialized", nil)
+      return
+    }
+
+    let pageTitle = event["pageTitle"]
+    let url = event["url"]
+    if pageTitle == nil || url == nil {
+      reject(nil, "invalid page view event", nil)
+      return
+    }
+
+    ZendeskNativeModule.shared.sendPageViewEvent(pageTitle: pageTitle!, url: url!) { result in
+      switch result {
+      case .success:
+        resolve(nil)
+        break
+      case .failure(let error):
+        reject(nil, error.localizedDescription, nil)
+        break
+      }
+    }
+  }
 }

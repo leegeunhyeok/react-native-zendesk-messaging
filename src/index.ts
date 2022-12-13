@@ -3,6 +3,7 @@ import type { EmitterSubscription } from 'react-native';
 import type {
   ZendeskInitializeConfig,
   ZendeskUser,
+  ZendeskPageViewEvent,
   ZendeskEventType,
   ZendeskEventResponse,
 } from './types';
@@ -40,6 +41,10 @@ export function logout(): Promise<void> {
 
 export function openMessagingView(): Promise<void> {
   return ZendeskMessaging.openMessagingView();
+}
+
+export function sendPageViewEvent(event: ZendeskPageViewEvent): Promise<void> {
+  return ZendeskMessaging.sendPageViewEvent(event);
 }
 
 export function addEventListener<EventType extends ZendeskEventType>(

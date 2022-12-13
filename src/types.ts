@@ -2,6 +2,11 @@ export interface ZendeskInitializeConfig {
   channelKey: string;
 }
 
+export interface ZendeskPageViewEvent {
+  pageTitle: string;
+  url: string;
+}
+
 export type ZendeskUser = {
   id: string;
   externalId: string;

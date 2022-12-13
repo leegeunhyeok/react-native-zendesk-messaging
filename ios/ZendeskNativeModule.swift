@@ -30,6 +30,11 @@ class ZendeskNativeModule: NSObject {
     return Zendesk.instance?.messaging?.messagingViewController()
   }
 
+  func sendPageViewEvent(pageTitle: String, url: String, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+    let pageView = PageView(pageTitle: pageTitle, url: url)
+    Zendesk.instance?.sendPageViewEvent(pageView, completionHandler: completionHandler)
+  }
+
   @objc(updatePushNotificationToken:)
   func updatePushNotificationToken(_ token: Data) -> Void {
     PushNotifications.updatePushNotificationToken(token)

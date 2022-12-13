@@ -8,6 +8,7 @@ import zendesk.android.SuccessCallback
 import zendesk.android.FailureCallback
 import zendesk.android.events.ZendeskEventListener
 import zendesk.android.messaging.MessagingFactory
+import zendesk.android.pageviewevents.PageView
 import zendesk.messaging.android.push.PushNotifications
 import zendesk.messaging.android.push.PushResponsibility
 
@@ -54,6 +55,11 @@ class ZendeskNativeModule private constructor() {
 
   fun showMessaging(context: Context, intentFlags: Int) =
     Zendesk.instance.messaging.showMessaging(context, intentFlags)
+
+  fun sendPageViewEvent(pageView: PageView,
+                        successCallback: SuccessCallback<Unit>,
+                        failureCallback: FailureCallback<Throwable>) =
+    Zendesk.instance.sendPageView(pageView, successCallback, failureCallback)
 
   fun setNotificationSmallIconId(resourceId: Int?) =
     PushNotifications.setNotificationSmallIconId(resourceId)
