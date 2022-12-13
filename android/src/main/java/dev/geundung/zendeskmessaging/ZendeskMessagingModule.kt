@@ -139,6 +139,15 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
+  fun getUnreadMessageCount(promise: Promise) {
+    if (!initialized) {
+      promise.reject(null, "Zendesk instance not initialized")
+    }
+
+    promise.resolve(module.getUnreadMessageCount() ?: 0)
+  }
+
+  @ReactMethod
   fun handleNotification(remoteMessage: ReadableMap, promise: Promise) {
     try {
       val messageData = remoteMessage.toHashMap().toMap() as Map<String, String>

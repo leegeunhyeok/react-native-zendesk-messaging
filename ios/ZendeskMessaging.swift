@@ -156,4 +156,14 @@ class ZendeskMessaging: RCTEventEmitter {
       }
     }
   }
+
+  @objc(getUnreadMessageCount:rejecter:)
+  func getUnreadMessageCount(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    if !initialized {
+      reject(nil, "Zendesk instance not initialized", nil)
+      return
+    }
+
+    resolve(ZendeskNativeModule.shared.getUnreadMessageCount() ?? 0)
+  }
 }

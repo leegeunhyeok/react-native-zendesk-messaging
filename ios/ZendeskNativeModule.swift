@@ -35,6 +35,10 @@ class ZendeskNativeModule: NSObject {
     Zendesk.instance?.sendPageViewEvent(pageView, completionHandler: completionHandler)
   }
 
+  func getUnreadMessageCount() -> Int? {
+    return Zendesk.instance?.messaging?.getUnreadMessageCount()
+  }
+
   @objc(updatePushNotificationToken:)
   func updatePushNotificationToken(_ token: Data) -> Void {
     PushNotifications.updatePushNotificationToken(token)

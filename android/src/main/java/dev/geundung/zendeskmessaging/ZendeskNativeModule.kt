@@ -67,6 +67,9 @@ class ZendeskNativeModule private constructor() {
   fun updatePushNotificationToken(newToken: String) =
     PushNotifications.updatePushNotificationToken(newToken)
 
+  fun getUnreadMessageCount() =
+    Zendesk.instance?.messaging?.getUnreadMessageCount()
+
   fun handleNotification(context: Context,
                          messageData: Map<String, String>,
                          callback: Callback<String>?): Boolean {

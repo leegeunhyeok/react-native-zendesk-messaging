@@ -47,6 +47,10 @@ export function sendPageViewEvent(event: ZendeskPageViewEvent): Promise<void> {
   return ZendeskMessaging.sendPageViewEvent(event);
 }
 
+export function getUnreadMessageCount(): Promise<number> {
+  return ZendeskMessaging.getUnreadMessageCount();
+}
+
 export function addEventListener<EventType extends ZendeskEventType>(
   type: EventType,
   listener: (event: ZendeskEventResponse[EventType]) => void
