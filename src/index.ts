@@ -1,5 +1,9 @@
-import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
-import type { EmitterSubscription } from 'react-native';
+import {
+  NativeModules,
+  NativeEventEmitter,
+  Platform,
+  type EmitterSubscription,
+} from 'react-native';
 import type {
   ZendeskInitializeConfig,
   ZendeskUser,
