@@ -7,10 +7,10 @@ export interface ZendeskPageViewEvent {
   url: string;
 }
 
-export type ZendeskUser = {
+export interface ZendeskUser {
   id: string;
   externalId: string;
-};
+}
 
 export type ZendeskNotificationResponsibility =
   | 'MESSAGING_SHOULD_DISPLAY'
