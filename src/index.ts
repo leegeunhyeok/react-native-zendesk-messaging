@@ -51,6 +51,14 @@ export function getUnreadMessageCount(): Promise<number> {
   return ZendeskMessaging.getUnreadMessageCount();
 }
 
+export function handleNotification(
+  remoteMessage: Record<string, string>
+): Promise<string> {
+  return Platform.OS === 'android'
+    ? ZendeskMessaging.handleNotification(remoteMessage)
+    : Promise.resolve(false);
+}
+
 export function addEventListener<EventType extends ZendeskEventType>(
   type: EventType,
   listener: (event: ZendeskEventResponse[EventType]) => void
@@ -64,12 +72,4 @@ export function removeSubscription(subscription: EmitterSubscription) {
 
 export function removeAllListeners(type: ZendeskEventType) {
   return eventEmitter.removeAllListeners(type);
-}
-
-export function handleNotification(
-  remoteMessage: Record<string, string>
-): Promise<string> {
-  return Platform.OS === 'android'
-    ? ZendeskMessaging.handleNotification(remoteMessage)
-    : Promise.resolve(false);
 }
