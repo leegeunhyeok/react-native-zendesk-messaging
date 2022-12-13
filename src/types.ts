@@ -12,6 +12,12 @@ export type ZendeskUser = {
   externalId: string;
 };
 
+export type ZendeskNotificationResponsibility =
+  | 'MESSAGING_SHOULD_DISPLAY'
+  | 'MESSAGING_SHOULD_NOT_DISPLAY'
+  | 'NOT_FROM_MESSAGING'
+  | 'UNKNOWN';
+
 export type ZendeskEventType = keyof ZendeskEventResponse;
 
 export type ZendeskEventResponse = {

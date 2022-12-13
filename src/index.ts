@@ -8,6 +8,7 @@ import type {
   ZendeskInitializeConfig,
   ZendeskUser,
   ZendeskPageViewEvent,
+  ZendeskNotificationResponsibility,
   ZendeskEventType,
   ZendeskEventResponse,
 } from './types';
@@ -57,10 +58,10 @@ export function getUnreadMessageCount(): Promise<number> {
 
 export function handleNotification(
   remoteMessage: Record<string, string>
-): Promise<string> {
+): Promise<ZendeskNotificationResponsibility> {
   return Platform.OS === 'android'
     ? ZendeskMessaging.handleNotification(remoteMessage)
-    : Promise.resolve(false);
+    : Promise.resolve('UNKNOWN');
 }
 
 export function addEventListener<EventType extends ZendeskEventType>(
