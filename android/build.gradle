@@ -85,6 +85,6 @@ if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
     libraryName = "ZendeskMessaging"
-    codegenJavaPackageName = "dev.geundung.zendeskmessaging"
+    codegenJavaPackageName = "dev.geundung.zendesk.messaging"
   }
 }

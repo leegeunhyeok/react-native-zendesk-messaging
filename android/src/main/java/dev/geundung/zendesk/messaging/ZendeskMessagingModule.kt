@@ -1,4 +1,4 @@
-package dev.geundung.zendeskmessaging
+package dev.geundung.zendesk.messaging
 
 import android.content.Intent
 import com.facebook.react.bridge.ReactApplicationContext

@@ -26,7 +26,7 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
 - Kotlin
   ```kotlin
   import com.google.firebase.messaging.FirebaseMessagingService
-  import dev.geundung.zendeskmessaging.ZendeskNativeModule
+  import dev.geundung.zendesk.messaging.ZendeskNativeModule
 
   // Your FirebaseMessagingService
   class SampleMessagingService : FirebaseMessagingService() {
@@ -52,7 +52,7 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
   import androidx.annotation.NonNull;
   import com.google.firebase.messaging.FirebaseMessagingService;
   import com.google.firebase.messaging.RemoteMessage;
-  import dev.geundung.zendeskmessaging.ZendeskNativeModule;
+  import dev.geundung.zendesk.messaging.ZendeskNativeModule;
 
   // Your FirebaseMessagingService
   public class SampleMessagingService extends FirebaseMessagingService {
