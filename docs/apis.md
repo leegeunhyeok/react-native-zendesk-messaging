@@ -7,6 +7,7 @@
 - [logout](#logout)
 - [openMessagingView](#openmessagingview)
 - [sendPageViewEvent](#sendpageviewevent)
+- [updatePushNotificationToken](#updatepushnotificationtoken)
 - [getUnreadMessageCount](#getunreadmessagecount)
 - [handleNotification](#handlenotification)
 - [addEventListener](#addeventlistener)
