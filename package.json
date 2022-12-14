@@ -1,7 +1,7 @@
 {
   "name": "react-native-zendesk-messaging",
   "version": "0.1.0-alpha.1",
-  "description": "test",
+  "description": "Zendesk messaging SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -39,7 +39,8 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "zendesk"
   ],
   "repository": "https://github.com/leegeunhyeok/react-native-zendesk-messaging",
   "author": "leegeunhyeok <dev.ghlee@gmail.com> (https://github.com/leegeunhyeok)",
