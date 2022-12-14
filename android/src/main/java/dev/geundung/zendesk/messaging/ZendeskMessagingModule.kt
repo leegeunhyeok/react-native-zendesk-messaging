@@ -139,6 +139,11 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
+  fun updatePushNotificationToken(newToken: String) {
+    module.updatePushNotificationToken(newToken)
+  }
+
+  @ReactMethod
   fun getUnreadMessageCount(promise: Promise) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")

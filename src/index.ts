@@ -52,6 +52,11 @@ export function sendPageViewEvent(event: ZendeskPageViewEvent): Promise<void> {
   return ZendeskMessaging.sendPageViewEvent(event);
 }
 
+export function updatePushNotificationToken(token: string): void {
+  if (Platform.OS !== 'android') return;
+  return ZendeskMessaging.updatePushNotificationToken(token);
+}
+
 export function getUnreadMessageCount(): Promise<number> {
   return ZendeskMessaging.getUnreadMessageCount();
 }

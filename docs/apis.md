@@ -165,6 +165,34 @@ sendPageViewEvent({
   - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#page-view-event)
   - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/advanced_integration/#page-view-event)
 
+## updatePushNotificationToken
+
+> :rotating_light: Android only
+
+To enable a device to receive push notifications, you must notify the SDK when a new FCM token has been created.
+
+- Parameters
+  | Name | Type | Required |
+  |:--|:--|:--|
+  | token | `string` | Yes |
+- Return Value
+  | Type |
+  |:--|
+  | `void` |
+
+```ts
+/* interfaces */
+
+function updatePushNotificationToken(token: string): void
+```
+
+```ts
+updatePushNotificationToken('...FCM Token...');
+```
+
+- References
+  - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/push_notifications/#updating-push-notification-tokens)
+
 ## getUnreadMessageCount
 
 Get current total number of unread messages.
@@ -195,9 +223,11 @@ Handle remote message that received from FCM(Firebase Cloud Messaging) and show 
 
 If remote message isn't Zendesk message, it does nothing.
 
-> This method for integrate with [@react-native-firebase/messaging](https://rnfirebase.io/reference/messaging) in Android. (do nothing in iOS)
+> :rotating_light: Android only
 >
-> For more details, read the [Push Notifications guide](./android-push-notification.md)
+> This method for integrate with [@react-native-firebase/messaging](https://rnfirebase.io/reference/messaging).
+>
+> For more details, read the [Push Notifications guide](./android-push-notification.md).
 
 - Parameters
   | Name | Type | Required |
