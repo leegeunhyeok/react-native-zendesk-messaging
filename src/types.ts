@@ -19,8 +19,10 @@ export type ZendeskNotificationResponsibility =
   | 'UNKNOWN';
 
 export type ZendeskEventType = keyof ZendeskEventResponse;
+export type ZendeskEvent<Type extends ZendeskEventType> =
+  ZendeskEventResponse[Type];
 
-export type ZendeskEventResponse = {
+type ZendeskEventResponse = {
   unreadMessageCountChanged: {
     unreadCount: number;
   };

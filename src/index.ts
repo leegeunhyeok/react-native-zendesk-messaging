@@ -10,7 +10,7 @@ import type {
   ZendeskPageViewEvent,
   ZendeskNotificationResponsibility,
   ZendeskEventType,
-  ZendeskEventResponse,
+  ZendeskEvent,
 } from './types';
 
 const LINKING_ERROR =
@@ -71,7 +71,7 @@ export function handleNotification(
 
 export function addEventListener<EventType extends ZendeskEventType>(
   type: EventType,
-  listener: (event: ZendeskEventResponse[EventType]) => void
+  listener: (event: ZendeskEvent<EventType>) => void
 ) {
   return eventEmitter.addListener(type, listener);
 }
