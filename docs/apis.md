@@ -195,7 +195,7 @@ Handle remote message that received from FCM(Firebase Cloud Messaging) and show 
 
 If remote message isn't Zendesk message, it does nothing.
 
-> This method for integrate with [react-native-firebase](https://rnfirebase.io/reference/messaging).
+> This method for integrate with [@react-native-firebase/messaging](https://rnfirebase.io/reference/messaging).
 >
 > For more details, read the [Push Notifications guide](./android-push-notification.md)
 

@@ -46,7 +46,7 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
   id userInfo = notification.request.content.userInfo;
   BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
 
-  // remote message was handled by Zendesk SDKs
+  // remote message was handled by Zendesk SDK
   if (isHandled) return;
 
   // other handing code here

@@ -13,11 +13,12 @@
 ## Features
 
 - 🔥 Not a Classic SDKs. It's new SDKs
-- 🗣️ Basic Chat features
+- 🗣️ Basic conversation features
+- 🔔 Push Notifications
+  - support native customizing or integrate with [@react-native-firebase/messaging](https://rnfirebase.io/reference/messaging)
 - ✅ Support SDK events
 - 🔑 User Authentication
 - 🚗 Visitor Path
-- 🔔 Push Notification (support native customizing or integrate with [react-native-firebase](https://rnfirebase.io/reference/messaging))
 
 Read official announcement about new messaging SDKs [here](https://support.zendesk.com/hc/en-us/articles/4408882490778).
 

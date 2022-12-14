@@ -3,11 +3,11 @@
 - [Firebase Cloud Messaging](#firebase-cloud-messaging)
   - [Basic setup](#basic-setup)
   - [Implementation of FirebaseMessagingService](#implementation-of-firebasemessagingservice)
-- [Integrate with react-native-firebase](#integrate-with-react-native-firebase)
+- [Integrate with @react-native-firebase/messaging](#integrate-with-react-native-firebasemessaging)
 
 ## Firebase Cloud Messaging
 
-> ⚠️ Are you using [react-native-firebase/messaging](https://rnfirebase.io/messaging/usage)?
+> ⚠️ Are you using [@react-native-firebase/messaging](https://rnfirebase.io/messaging/usage)?
 >
 > Go to [Integrate with react-native-firebase](#integrate-with-react-native-firebase) section.
 
@@ -76,9 +76,9 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
   }
   ```
 
-## Integrate with react-native-firebase
+## Integrate with @react-native-firebase/messaging
 
-This guide for integrate with [react-native-firebase/messaging](https://rnfirebase.io/messaging/usage).
+This guide for integrate with [@react-native-firebase/messaging](https://rnfirebase.io/messaging/usage).
 
 ```ts
 import messaging from '@react-native-firebase/messaging';
@@ -98,7 +98,7 @@ messaging().onMessage(async (remoteMessage) => {
   switch (responsibility) {
     case 'MESSAGING_SHOULD_DISPLAY':
     case 'MESSAGING_SHOULD_NOT_DISPLAY':
-      // remote message was handled by Zendesk SDKs
+      // remote message was handled by Zendesk SDK
       return;
 
     case 'NOT_FROM_MESSAGING':
