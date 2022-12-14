@@ -24,7 +24,7 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
 #import <ZendeskNativeModule.h>
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [ZendeskNativeModule updatePushNotificationToken:deviceToken];
+  [[ZendeskNativeModule shared] updatePushNotificationToken:deviceToken];
 }
 ```
 
@@ -44,7 +44,7 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
 
   id userInfo = notification.request.content.userInfo;
-  BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
+  BOOL isHandled = [[ZendeskNativeModule shared] handleNotification:userInfo completionHandler:completionHandler];
 
   // remote message was handled by Zendesk SDK
   if (isHandled) return;
