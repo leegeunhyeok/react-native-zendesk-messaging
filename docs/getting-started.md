@@ -35,6 +35,28 @@ https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android
   }
   ```
 
+---
+
+You can override SDK version like this
+
+```gradle
+// Your root build.gradle
+buildscript {
+  ext {
+    ...
+    zendeskSdkVersion = "2.3.0" // default version is "2.3.0"
+  }
+}
+```
+
+- SDK Versions
+  - `>= 2.3.0`
+    - Kotlin version: 1.5.31
+    - SDK target and compiles: API 31
+  - `>= 2.7.0`
+    - Kotlin version: 1.6.x
+- For more details, checkout [release notes](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/release_notes)
+
 ## iOS
 
 https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/getting_started

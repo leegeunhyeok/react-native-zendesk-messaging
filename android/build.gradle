@@ -67,10 +67,7 @@ repositories {
 }
 
 def kotlinVersion = getExtOrDefault("kotlinVersion")
-
-// Check Zendesk SDK versions
-// https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/release_notes
-def zendeskSdkVersion = "2.8.0"
+def zendeskSdkVersion = getExtOrDefault("zendeskSdkVersion")
 
 dependencies {
   // For < 0.71, this will be from the local maven repo
