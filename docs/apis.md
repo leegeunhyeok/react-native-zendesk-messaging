@@ -238,7 +238,7 @@ Add a listener for listening emitted events by Zendesk SDK.
 - Parameters
   | Name | Type | Required |
   |:--|:--|:--|
-  | type | `EventType` | Yes |
+  | type | `ZendeskEventType` | Yes |
   | listener | `(event) => void` | Yes |
 - Return Value
   | Type |
@@ -297,7 +297,7 @@ Remove all of registered listener by event type.
 - Parameters
   | Name | Type | Required |
   |:--|:--|:--|
-  | type | `string` | Yes |
+  | type | `ZendeskEventType` | Yes |
 - Return Value
   - `void`
 
