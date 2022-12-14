@@ -68,5 +68,5 @@ https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/get
 
 ## Push Notifications
 
-- [Android guide](./android-push-notification.md)
-- [iOS guide](./ios-push-notification.md)
+- [Android guide](./android-push-notifications.md)
+- [iOS guide](./ios-push-notifications.md)

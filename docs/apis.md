@@ -228,7 +228,7 @@ If remote message isn't Zendesk message, it does nothing.
 >
 > This method for integrate with [@react-native-firebase/messaging](https://rnfirebase.io/reference/messaging).
 >
-> For more details, read the [Push Notifications guide](./android-push-notification.md).
+> For more details, read the [Push Notifications guide](./android-push-notifications.md).
 
 - Parameters
   | Name | Type | Required |
