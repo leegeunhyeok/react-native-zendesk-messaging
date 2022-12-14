@@ -4,7 +4,7 @@
 
   <img width="300" alt="zendesk" src="https://user-images.githubusercontent.com/26512984/207395088-5b4bd509-c68e-4cd0-9c98-0162f23ff713.png">
 
-  [Zendesk messaging SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks) wrapper for React Native
+  [Zendesk messaging SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks) for React Native
 
   [![npm version](https://badge.fury.io/js/react-native-zendesk-messaging.svg)](https://badge.fury.io/js/react-native-zendesk-messaging)
 
