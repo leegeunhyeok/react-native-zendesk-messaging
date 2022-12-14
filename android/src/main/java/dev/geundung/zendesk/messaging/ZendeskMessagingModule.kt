@@ -87,7 +87,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       successCallback = { user ->
         val data: WritableMap = Arguments.createMap()
         data.putString("id", user.id)
-        data.putString("id", user.externalId)
+        data.putString("externalId", user.externalId)
         promise.resolve(data) },
       failureCallback = { error -> promise.reject(error) },
     )
