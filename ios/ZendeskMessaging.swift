@@ -25,12 +25,8 @@ class ZendeskMessaging: RCTEventEmitter {
       switch event {
       case .unreadMessageCountChanged(let unreadCount):
         self.sendEvent(withName: "unreadMessageCountChanged", body: ["unreadCount": unreadCount])
-        break
-
       case .authenticationFailed(let error):
         self.sendEvent(withName: "authenticationFailed", body: ["reason": error.localizedDescription])
-        break
-
       @unknown default:
         break
       }
@@ -43,7 +39,11 @@ class ZendeskMessaging: RCTEventEmitter {
   }
 
   @objc(initialize:resolver:rejecter:)
-  func initialize(config: [String: String], resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func initialize(
+    config: [String: String],
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
     if initialized {
       resolve(nil)
       return
@@ -64,16 +64,18 @@ class ZendeskMessaging: RCTEventEmitter {
         self.setupEventObserver(withInstance: zendesk)
         self.initialized = true
         resolve(nil)
-        break
       case .failure(let error):
         reject(nil, "initialize failed", error)
-        break
       }
     }
   }
 
   @objc(login:resolver:rejecter:)
-  func login(token: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func login(
+    token: String,
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
     if !initialized {
       reject(nil, "Zendesk instance not initialized", nil)
       return
@@ -82,39 +84,38 @@ class ZendeskMessaging: RCTEventEmitter {
     ZendeskNativeModule.shared.loginUser(token) { result in
       switch result {
       case .success(let user):
-        resolve([
-          "id": user.id,
-          "externalId": user.externalId,
-        ])
-        break
+        resolve(["id": user.id, "externalId": user.externalId])
       case .failure(let error):
         reject(nil, error.localizedDescription, error)
-        break
       }
     }
   }
 
   @objc(logout:rejecter:)
-  func logout(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func logout(
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
     if !initialized {
       reject(nil, "Zendesk instance not initialized", nil)
       return
     }
 
-    ZendeskNativeModule.shared.logoutUser() { result in
+    ZendeskNativeModule.shared.logoutUser { result in
       switch result {
-      case .success(_):
+      case .success:
         resolve(nil)
-        break
       case .failure(let error):
         reject(nil, error.localizedDescription, error)
-        break
       }
     }
   }
 
   @objc(openMessagingView:rejecter:)
-  func openMessagingView(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func openMessagingView(
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
     if !initialized {
       reject(nil, "Zendesk instance not initialized", nil)
       return
@@ -132,7 +133,11 @@ class ZendeskMessaging: RCTEventEmitter {
   }
 
   @objc(sendPageViewEvent:resolver:rejecter:)
-  func sendPageViewEvent(event: [String: String], resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func sendPageViewEvent(
+    event: [String: String],
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
     if !initialized {
       reject(nil, "Zendesk instance not initialized", nil)
       return
@@ -149,16 +154,17 @@ class ZendeskMessaging: RCTEventEmitter {
       switch result {
       case .success:
         resolve(nil)
-        break
       case .failure(let error):
         reject(nil, error.localizedDescription, nil)
-        break
       }
     }
   }
 
   @objc(getUnreadMessageCount:rejecter:)
-  func getUnreadMessageCount(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func getUnreadMessageCount(
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
     if !initialized {
       reject(nil, "Zendesk instance not initialized", nil)
       return
