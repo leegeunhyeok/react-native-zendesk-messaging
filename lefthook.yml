@@ -4,11 +4,15 @@ pre-commit:
     lint:
       files: git diff --name-only @{push}
       glob: "*.{js,ts,jsx,tsx}"
-      run: npx eslint {files}
+      run: yarn lint
+    lint:swift:
+      files: git diff --name-only @{push}
+      glob: "*.{swift}"
+      run: yarn lint:swift
     types:
       files: git diff --name-only @{push}
       glob: "*.{js,ts, jsx, tsx}"
-      run: npx tsc --noEmit
+      run: yarn typecheck
 commit-msg:
   parallel: true
   commands:
