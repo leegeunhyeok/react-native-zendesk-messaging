@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* ZendeskMessaging.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* ZendeskMessaging.m */; };
-		F4FF95D7245B92E800C19C63 /*  ZendeskMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  ZendeskMessaging.swift */; };
+		F4FF95D7245B92E800C19C63 /* ZendeskMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libZendeskMessaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZendeskMessaging.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E8FC5829518784007BF3C2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* ZendeskMessaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZendeskMessaging.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* ZendeskMessaging-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZendeskMessaging-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZendeskMessaging.swift; sourceTree = "<group>"; };
@@ -52,6 +52,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				88E8FC5829518784007BF3C2 /* .swiftlint.yml */,
 				F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */,
 				B3E7B5891CC2AC0600A0062D /* ZendeskMessaging.m */,
 				F4FF95D5245B92E700C19C63 /* ZendeskMessaging-Bridging-Header.h */,
@@ -117,7 +118,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FF95D7245B92E800C19C63 /* ZendeskMessaging.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* ZendeskMessaging.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

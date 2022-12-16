@@ -39,6 +39,10 @@ Make sure your code passes TypeScript and ESLint. Run the following to verify:
 ```sh
 yarn typecheck
 yarn lint
+
+# should install `swiftlint` before run
+# > https://github.com/realm/SwiftLint
+yarn lint:swift
 ```
 
 To fix formatting errors, run the following:
@@ -96,6 +100,7 @@ The `package.json` file contains various scripts for common tasks:
 - `yarn bootstrap`: setup project by installing all dependencies and pods.
 - `yarn typecheck`: type-check files with TypeScript.
 - `yarn lint`: lint files with ESLint.
+- `yarn lint:swift`: lint files with SwiftLint.
 - `yarn test`: run unit tests with Jest.
 - `yarn example start`: start the Metro server for the example app.
 - `yarn example android`: run the example app on Android.

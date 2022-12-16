@@ -45,7 +45,7 @@ class ZendeskNativeModule: NSObject {
   }
 
   @objc(handleNotification:completionHandler:)
-  func handleNotification(_ userInfo: [AnyHashable : Any],
+  func handleNotification(_ userInfo: [AnyHashable: Any],
                           withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) -> Bool {
     var handled = true
     let shouldBeDisplayed = PushNotifications.shouldBeDisplayed(userInfo)
