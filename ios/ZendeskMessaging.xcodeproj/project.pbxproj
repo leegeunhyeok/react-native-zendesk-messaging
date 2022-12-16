@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88E8FC5B29518784007BF3C2 /* ZendeskNativeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8FC5A29518784007BF3C2 /* ZendeskNativeModule.swift */; };
 		F4FF95D7245B92E800C19C63 /* ZendeskMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,10 +25,12 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libZendeskMessaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZendeskMessaging.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		88E8FC5829518784007BF3C2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* ZendeskMessaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZendeskMessaging.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* ZendeskMessaging-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZendeskMessaging-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZendeskMessaging.swift; sourceTree = "<group>"; };
+		88E8FC5829518784007BF3C2 /* .swiftlint.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; tabWidth = 2; };
+		88E8FC5929518784007BF3C2 /* ZendeskNativeModule.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = ZendeskNativeModule.h; sourceTree = "<group>"; tabWidth = 2; };
+		88E8FC5A29518784007BF3C2 /* ZendeskNativeModule.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ZendeskNativeModule.swift; sourceTree = "<group>"; tabWidth = 2; };
+		B3E7B5891CC2AC0600A0062D /* ZendeskMessaging.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = ZendeskMessaging.m; sourceTree = "<group>"; tabWidth = 2; };
+		F4FF95D5245B92E700C19C63 /* ZendeskMessaging-Bridging-Header.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = "ZendeskMessaging-Bridging-Header.h"; sourceTree = "<group>"; tabWidth = 2; };
+		F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ZendeskMessaging.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,8 @@
 			children = (
 				88E8FC5829518784007BF3C2 /* .swiftlint.yml */,
 				F4FF95D6245B92E800C19C63 /* ZendeskMessaging.swift */,
+				88E8FC5929518784007BF3C2 /* ZendeskNativeModule.h */,
+				88E8FC5A29518784007BF3C2 /* ZendeskNativeModule.swift */,
 				B3E7B5891CC2AC0600A0062D /* ZendeskMessaging.m */,
 				F4FF95D5245B92E700C19C63 /* ZendeskMessaging-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -118,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FF95D7245B92E800C19C63 /* ZendeskMessaging.swift in Sources */,
+				88E8FC5B29518784007BF3C2 /* ZendeskNativeModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
