@@ -89,7 +89,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
         data.putString("id", user.id)
         data.putString("externalId", user.externalId)
         promise.resolve(data) },
-      failureCallback = { error -> promise.reject(error) },
+      failureCallback = { error -> promise.reject(error) }
     )
   }
 
@@ -102,7 +102,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
 
     module.logoutUser(
       successCallback = { _ -> promise.resolve(null) },
-      failureCallback = { error -> promise.reject(error) },
+      failureCallback = { error -> promise.reject(error) }
     )
   }
 
@@ -134,7 +134,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     module.sendPageViewEvent(
       pageView = pageView,
       successCallback = { _ -> promise.resolve(null) },
-      failureCallback = { error -> promise.reject(error) },
+      failureCallback = { error -> promise.reject(error) }
     )
   }
 
@@ -158,9 +158,8 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       val messageData = remoteMessage.toHashMap().toMap() as Map<String, String>
       module.handleNotification(
         context = reactContext,
-        messageData = messageData,
-        callback = { responsibility -> promise.resolve(responsibility) }
-      )
+        messageData = messageData
+      ) { responsibility -> promise.resolve(responsibility) }
     } catch (error: Exception) {
       promise.reject(error)
     }
