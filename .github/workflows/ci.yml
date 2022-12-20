@@ -2,10 +2,10 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   lint:
@@ -32,8 +32,8 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
-      - name: Run unit tests
-        run: yarn test --maxWorkers=2 --coverage
+      # - name: Run unit tests
+      #   run: yarn test --maxWorkers=2 --coverage
 
   build:
     runs-on: ubuntu-latest
