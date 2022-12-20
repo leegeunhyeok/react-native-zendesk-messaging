@@ -14,17 +14,17 @@ import type {
 } from './types';
 
 const LINKING_ERROR =
-  `The package 'react-native-zendesk-messaging' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+  `The package 'react-native-zendesk-messaging' doesn't seem to be linked. Make sure: \n\n${
+  Platform.select({ ios: "- You have run 'pod install'\n", default: '' })
+  }- You rebuilt the app after installing the package\n` +
+  `- You are not using Expo Go\n`;
 
 const ZendeskMessaging = NativeModules.ZendeskMessaging
   ? NativeModules.ZendeskMessaging
   : new Proxy(
       {},
       {
-        get() {
+        get(): never {
           throw new Error(LINKING_ERROR);
         },
       }
@@ -72,14 +72,14 @@ export function handleNotification(
 export function addEventListener<EventType extends ZendeskEventType>(
   type: EventType,
   listener: (event: ZendeskEvent<EventType>) => void
-) {
+): EmitterSubscription {
   return eventEmitter.addListener(type, listener);
 }
 
-export function removeSubscription(subscription: EmitterSubscription) {
-  return eventEmitter.removeSubscription(subscription);
+export function removeSubscription(subscription: EmitterSubscription): void {
+  eventEmitter.removeSubscription(subscription);
 }
 
-export function removeAllListeners(type: ZendeskEventType) {
-  return eventEmitter.removeAllListeners(type);
+export function removeAllListeners(type: ZendeskEventType): void {
+  eventEmitter.removeAllListeners(type);
 }
