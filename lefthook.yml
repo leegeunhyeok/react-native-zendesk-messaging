@@ -5,6 +5,10 @@ pre-commit:
       files: git diff --name-only @{push}
       glob: "*.{js,ts,jsx,tsx}"
       run: yarn lint
+    lint:kotlin:
+      files: git diff --name-only @{push}
+      glob: "*.{kt,kts}"
+      run: yarn lint:kotlin
     lint:swift:
       files: git diff --name-only @{push}
       glob: "*.{swift}"
