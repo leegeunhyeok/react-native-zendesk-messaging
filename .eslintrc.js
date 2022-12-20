@@ -29,5 +29,9 @@ module.exports = {
         '@typescript-eslint/no-unsafe-return': 'off',
       },
     },
+    {
+      files: ['**/?(*.)+(spec|test).ts?(x)'],
+      extends: [require.resolve('@vercel/style-guide/eslint/jest')],
+    },
   ],
 };
