@@ -6,7 +6,8 @@
 
   [Zendesk messaging SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks) for React Native
 
-  [![ktlint](https://img.shields.io/badge/ktlint%20code--style-%E2%9D%A4-FF4081)](https://pinterest.github.io/ktlint/)
+  [![style](https://img.shields.io/badge/vercel%20code--style-000000?logo=vercel&logoColor=white)](https://github.com/vercel/style-guide)
+  [![ktlint](https://img.shields.io/badge/ktlint%20code--style-%E2%9D%A4-FF4081)](https://pinterest.github.io/ktlint)
   [![swiftlint](https://img.shields.io/badge/swiftlint%20code--style-%E2%9D%A4-51A0D5)](https://github.com/realm/SwiftLint)
   [![npm version](https://badge.fury.io/js/react-native-zendesk-messaging.svg)](https://badge.fury.io/js/react-native-zendesk-messaging)
 
