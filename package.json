@@ -30,6 +30,7 @@
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint:kotlin": "cd android; ktlint",
     "lint:swift": "cd ios; swiftlint",
     "prepack": "bob build",
     "release": "release-it",

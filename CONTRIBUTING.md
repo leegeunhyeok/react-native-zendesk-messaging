@@ -40,6 +40,10 @@ Make sure your code passes TypeScript and ESLint. Run the following to verify:
 yarn typecheck
 yarn lint
 
+# should install `ktlint` before run
+# > https://pinterest.github.io/ktlint
+yarn lint:kotlin
+
 # should install `swiftlint` before run
 # > https://github.com/realm/SwiftLint
 yarn lint:swift
