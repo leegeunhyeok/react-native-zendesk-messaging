@@ -1,11 +1,10 @@
 package dev.geundung.zendesk.messaging
 
 import android.content.Context
-
+import zendesk.android.FailureCallback
+import zendesk.android.SuccessCallback
 import zendesk.android.Zendesk
 import zendesk.android.ZendeskUser
-import zendesk.android.SuccessCallback
-import zendesk.android.FailureCallback
 import zendesk.android.events.ZendeskEventListener
 import zendesk.android.messaging.MessagingFactory
 import zendesk.android.pageviewevents.PageView
@@ -31,25 +30,26 @@ class ZendeskNativeModule private constructor() {
     channelKey: String,
     successCallback: SuccessCallback<Zendesk>,
     failureCallback: FailureCallback<Throwable>,
-    messagingFactory: MessagingFactory?
+    messagingFactory: MessagingFactory?,
   ) = Zendesk.initialize(
-      context = context,
-      channelKey = channelKey,
-      successCallback = successCallback,
-      failureCallback = failureCallback,
-      messagingFactory = messagingFactory)
+    context = context,
+    channelKey = channelKey,
+    successCallback = successCallback,
+    failureCallback = failureCallback,
+    messagingFactory = messagingFactory,
+  )
 
   fun addEventListener(listener: ZendeskEventListener) = Zendesk.instance.addEventListener(listener)
 
   fun loginUser(
     token: String,
     successCallback: SuccessCallback<ZendeskUser>,
-    failureCallback: FailureCallback<Throwable>
+    failureCallback: FailureCallback<Throwable>,
   ) = Zendesk.instance.loginUser(token, successCallback, failureCallback)
 
   fun logoutUser(
     successCallback: SuccessCallback<Unit>,
-    failureCallback: FailureCallback<Throwable>
+    failureCallback: FailureCallback<Throwable>,
   ) = Zendesk.instance.logoutUser(successCallback, failureCallback)
 
   fun showMessaging(context: Context, intentFlags: Int) =
@@ -58,7 +58,7 @@ class ZendeskNativeModule private constructor() {
   fun sendPageViewEvent(
     pageView: PageView,
     successCallback: SuccessCallback<Unit>,
-    failureCallback: FailureCallback<Throwable>
+    failureCallback: FailureCallback<Throwable>,
   ) = Zendesk.instance.sendPageView(pageView, successCallback, failureCallback)
 
   fun setNotificationSmallIconId(resourceId: Int?) =
@@ -73,7 +73,7 @@ class ZendeskNativeModule private constructor() {
   fun handleNotification(
     context: Context,
     messageData: Map<String, String>,
-    callback: ((String) -> Unit)?
+    callback: ((String) -> Unit)?,
   ): Boolean {
     var handled = true
     when (PushNotifications.shouldBeDisplayed(messageData)) {

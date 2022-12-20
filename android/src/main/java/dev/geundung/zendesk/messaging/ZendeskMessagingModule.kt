@@ -1,15 +1,14 @@
 package dev.geundung.zendesk.messaging
 
 import android.content.Intent
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
-import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
-
 import zendesk.android.events.ZendeskEvent
 import zendesk.android.pageviewevents.PageView
 import zendesk.messaging.android.DefaultMessagingFactory
@@ -32,7 +31,8 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   private fun setupEventObserver() {
     module.addEventListener(
       listener = {
-        zendeskEvent -> when (zendeskEvent) {
+          zendeskEvent ->
+        when (zendeskEvent) {
           is ZendeskEvent.UnreadMessageCountChanged -> {
             val event: WritableMap = Arguments.createMap()
             event.putDouble("unreadCount", zendeskEvent.currentUnreadCount.toDouble())
@@ -45,7 +45,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
           }
           else -> {}
         }
-      }
+      },
     )
   }
 
@@ -71,7 +71,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
         promise.resolve(null)
       },
       failureCallback = { error -> promise.reject(error) },
-      messagingFactory = DefaultMessagingFactory()
+      messagingFactory = DefaultMessagingFactory(),
     )
   }
 
@@ -88,8 +88,9 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
         val data: WritableMap = Arguments.createMap()
         data.putString("id", user.id)
         data.putString("externalId", user.externalId)
-        promise.resolve(data) },
-      failureCallback = { error -> promise.reject(error) }
+        promise.resolve(data)
+      },
+      failureCallback = { error -> promise.reject(error) },
     )
   }
 
@@ -102,7 +103,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
 
     module.logoutUser(
       successCallback = { _ -> promise.resolve(null) },
-      failureCallback = { error -> promise.reject(error) }
+      failureCallback = { error -> promise.reject(error) },
     )
   }
 
@@ -134,7 +135,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     module.sendPageViewEvent(
       pageView = pageView,
       successCallback = { _ -> promise.resolve(null) },
-      failureCallback = { error -> promise.reject(error) }
+      failureCallback = { error -> promise.reject(error) },
     )
   }
 
@@ -158,7 +159,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       val messageData = remoteMessage.toHashMap().toMap() as Map<String, String>
       module.handleNotification(
         context = reactContext,
-        messageData = messageData
+        messageData = messageData,
       ) { responsibility -> promise.resolve(responsibility) }
     } catch (error: Exception) {
       promise.reject(error)
