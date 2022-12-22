@@ -105,6 +105,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   fun openMessagingView(promise: Promise) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")
+      return
     }
 
     module.showMessaging(reactContext, Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -116,6 +117,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   fun sendPageViewEvent(event: ReadableMap, promise: Promise) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")
+      return
     }
     val pageTitle = event.getString("pageTitle")
     val url = event.getString("pageTitle")
@@ -137,6 +139,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   fun getUnreadMessageCount(promise: Promise) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")
+      return
     }
 
     promise.resolve(module.getUnreadMessageCount() ?: 0)
