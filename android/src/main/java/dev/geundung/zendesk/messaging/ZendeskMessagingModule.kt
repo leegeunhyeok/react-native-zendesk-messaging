@@ -56,12 +56,6 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       return
     }
 
-    val channelKey = config.getString("channelKey")
-    if (channelKey == null || channelKey.isEmpty()) {
-      promise.reject(null, "channelKey is empty")
-      return
-    }
-
     module.initialize(
       context = reactContext,
       channelKey = channelKey,
@@ -123,15 +117,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")
     }
-
     val pageTitle = event.getString("pageTitle")
     val url = event.getString("pageTitle")
-    if (pageTitle == null || url == null) {
-      promise.reject(null, "invalid page view event")
-      return
-    }
-
     val pageView = PageView(url = url, pageTitle = pageTitle)
+
     module.sendPageViewEvent(
       pageView = pageView,
       successCallback = { _ -> promise.resolve(null) },

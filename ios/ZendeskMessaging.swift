@@ -48,12 +48,7 @@ class ZendeskMessaging: RCTEventEmitter {
       resolve(nil)
       return
     }
-
     let channelKey = config["channelKey"]
-    if channelKey == nil || channelKey!.isEmpty {
-      reject(nil, "channelKey is empty", nil)
-      return
-    }
 
     ZendeskNativeModule.shared.initialize(
       withChannelKey: channelKey!,
@@ -142,13 +137,8 @@ class ZendeskMessaging: RCTEventEmitter {
       reject(nil, "Zendesk instance not initialized", nil)
       return
     }
-
     let pageTitle = event["pageTitle"]
     let url = event["url"]
-    if pageTitle == nil || url == nil {
-      reject(nil, "invalid page view event", nil)
-      return
-    }
 
     ZendeskNativeModule.shared.sendPageViewEvent(pageTitle: pageTitle!, url: url!) { result in
       switch result {

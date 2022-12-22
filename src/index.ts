@@ -4,6 +4,7 @@ import {
   Platform,
   type EmitterSubscription,
 } from 'react-native';
+import { ZendeskMessagingError } from './error';
 import type {
   ZendeskInitializeConfig,
   ZendeskUser,
@@ -33,10 +34,16 @@ const ZendeskMessaging = NativeModules.ZendeskMessaging
 const eventEmitter = new NativeEventEmitter(ZendeskMessaging);
 
 export function initialize(config: ZendeskInitializeConfig): Promise<void> {
+  if (typeof config.channelKey !== 'string') {
+    return Promise.reject(new ZendeskMessagingError('invalid channelKey'));
+  }
   return ZendeskMessaging.initialize(config);
 }
 
 export function login(token: string): Promise<ZendeskUser> {
+  if (typeof token !== 'string' || !token.length) {
+    return Promise.reject(new ZendeskMessagingError('invalid token'));
+  }
   return ZendeskMessaging.login(token);
 }
 
@@ -49,6 +56,9 @@ export function openMessagingView(): Promise<void> {
 }
 
 export function sendPageViewEvent(event: ZendeskPageViewEvent): Promise<void> {
+  if (event.pageTitle !== 'string' || event.url !== 'string') {
+    return Promise.reject(new ZendeskMessagingError('invalid event data'));
+  }
   return ZendeskMessaging.sendPageViewEvent(event);
 }
 
