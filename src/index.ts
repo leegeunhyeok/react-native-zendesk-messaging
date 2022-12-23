@@ -56,7 +56,7 @@ export function openMessagingView(): Promise<void> {
 }
 
 export function sendPageViewEvent(event: ZendeskPageViewEvent): Promise<void> {
-  if (event.pageTitle !== 'string' || event.url !== 'string') {
+  if (typeof event.pageTitle !== 'string' || typeof event.url !== 'string') {
     return Promise.reject(new ZendeskMessagingError('invalid event data'));
   }
   return ZendeskMessaging.sendPageViewEvent(event);
