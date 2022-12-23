@@ -52,18 +52,10 @@ describe('react-native-zendesk-messaging', () => {
     });
 
     describe('when invalid configuration present', () => {
-      let config: ZendeskInitializeConfig;
-
-      beforeEach(() => {
-        config = faker.helpers.arrayElement([
-          // invalid formats
-          {} as ZendeskInitializeConfig,
-          { channelKey: '' }
-        ]);
-      });
+      const CONFIG = {} as ZendeskInitializeConfig;
 
       it('should throw error', async () => {
-        await expect(Zendesk.initialize(config)).rejects.toThrow(ZendeskMessagingError);
+        await expect(Zendesk.initialize(CONFIG)).rejects.toThrow(ZendeskMessagingError);
       });
     });
   });
