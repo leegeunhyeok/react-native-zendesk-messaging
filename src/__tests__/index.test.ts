@@ -1,5 +1,5 @@
-import { NativeModules } from 'react-native';
-import type { Platform as RNPlatform } from 'react-native';
+import { NativeModules, type Platform as RNPlatform } from 'react-native';
+import { faker } from '@faker-js/faker';
 import * as Zendesk from '../index';
 
 jest.mock('react-native', () => {
@@ -33,32 +33,34 @@ describe('react-native-zendesk-messaging', () => {
   });
 
   describe('when call initialize', () => {
-    const CHANNEL_KEY = '';
+    let channelKey: string;
     let mockInitialize: jest.SpyInstance;
 
     beforeEach(async () => {
+      channelKey = faker.datatype.uuid();
       mockInitialize = jest.spyOn(ZendeskMessagingModule, 'initialize');
-      await Zendesk.initialize({ channelKey: CHANNEL_KEY });
+      await Zendesk.initialize({ channelKey });
     });
 
     it('should call native module\'s initialize method', () => {
       expect(mockInitialize).toHaveBeenCalledTimes(1);
-      expect(mockInitialize).toHaveBeenCalledWith({ channelKey: CHANNEL_KEY });
+      expect(mockInitialize).toHaveBeenCalledWith({ channelKey });
     });
   });
 
   describe('when call login', () => {
-    const TOKEN = '';
+    let token: string;
     let mockLogin: jest.SpyInstance;
 
     beforeEach(async () => {
+      token = faker.random.alphaNumeric();
       mockLogin = jest.spyOn(ZendeskMessagingModule, 'login');
-      await Zendesk.login(TOKEN);
+      await Zendesk.login(token);
     });
 
     it('should call native module\'s login method', () => {
       expect(mockLogin).toHaveBeenCalledTimes(1);
-      expect(mockLogin).toHaveBeenCalledWith(TOKEN);
+      expect(mockLogin).toHaveBeenCalledWith(token);
     });
   });
 
@@ -89,23 +91,25 @@ describe('react-native-zendesk-messaging', () => {
   });
 
   describe('when call sendPageViewEvent', () => {
-    const PAGE_TITLE = '';
-    const URL = '';
+    let pageTitle: string;
+    let url: string;
     let mockSendPageViewEvent: jest.SpyInstance;
 
     beforeEach(async () => {
+      pageTitle = faker.word.noun();
+      url = faker.internet.url();
       mockSendPageViewEvent = jest.spyOn(ZendeskMessagingModule, 'sendPageViewEvent');
-      await Zendesk.sendPageViewEvent({ pageTitle: PAGE_TITLE, url: URL });
+      await Zendesk.sendPageViewEvent({ pageTitle, url });
     });
 
     it('should call native module\'s sendPageViewEvent method', () => {
       expect(mockSendPageViewEvent).toHaveBeenCalledTimes(1);
-      expect(mockSendPageViewEvent).toHaveBeenCalledWith({ pageTitle: PAGE_TITLE, url: URL });
+      expect(mockSendPageViewEvent).toHaveBeenCalledWith({ pageTitle, url });
     });
   });
 
   describe('when call updatePushNotificationToken', () => {
-    const TOKEN = '';
+    let token: string;
     let mockUpdatePushNotificationToken: jest.SpyInstance;
 
     describe('when platform is Android', () => {
@@ -114,8 +118,9 @@ describe('react-native-zendesk-messaging', () => {
       });
 
       beforeEach(() => {
+        token = faker.random.alphaNumeric();
         mockUpdatePushNotificationToken = jest.spyOn(ZendeskMessagingModule, 'updatePushNotificationToken');
-        Zendesk.updatePushNotificationToken(TOKEN);
+        Zendesk.updatePushNotificationToken(token);
       });
 
       afterAll(() => {
@@ -124,7 +129,7 @@ describe('react-native-zendesk-messaging', () => {
 
       it('should call native module\'s updatePushNotificationToken method', () => {
         expect(mockUpdatePushNotificationToken).toHaveBeenCalledTimes(1);
-        expect(mockUpdatePushNotificationToken).toHaveBeenCalledWith(TOKEN);
+        expect(mockUpdatePushNotificationToken).toHaveBeenCalledWith(token);
       });
     });
 
@@ -135,7 +140,7 @@ describe('react-native-zendesk-messaging', () => {
 
       beforeEach(() => {
         mockUpdatePushNotificationToken = jest.spyOn(ZendeskMessagingModule, 'updatePushNotificationToken');
-        Zendesk.updatePushNotificationToken(TOKEN);
+        Zendesk.updatePushNotificationToken(token);
       });
 
       afterAll(() => {
