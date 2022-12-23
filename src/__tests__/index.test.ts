@@ -1,6 +1,8 @@
 import { NativeModules, type Platform as RNPlatform } from 'react-native';
 import { faker } from '@faker-js/faker';
 import * as Zendesk from '../index';
+import { ZendeskMessagingError } from '../error';
+import type { ZendeskInitializeConfig, ZendeskPageViewEvent } from '../types';
 
 jest.mock('react-native', () => {
   const reactNative = jest.requireActual('react-native');
@@ -33,18 +35,36 @@ describe('react-native-zendesk-messaging', () => {
   });
 
   describe('when call initialize', () => {
-    let channelKey: string;
-    let mockInitialize: jest.SpyInstance;
+    describe('when valid configuration present', () => {
+      let channelKey: string;
+      let mockInitialize: jest.SpyInstance;
 
-    beforeEach(async () => {
-      channelKey = faker.datatype.uuid();
-      mockInitialize = jest.spyOn(ZendeskMessagingModule, 'initialize');
-      await Zendesk.initialize({ channelKey });
+      beforeEach(async () => {
+        channelKey = faker.datatype.uuid();
+        mockInitialize = jest.spyOn(ZendeskMessagingModule, 'initialize');
+        await Zendesk.initialize({ channelKey });
+      });
+
+      it('should call native module\'s initialize method', () => {
+        expect(mockInitialize).toHaveBeenCalledTimes(1);
+        expect(mockInitialize).toHaveBeenCalledWith({ channelKey });
+      });
     });
 
-    it('should call native module\'s initialize method', () => {
-      expect(mockInitialize).toHaveBeenCalledTimes(1);
-      expect(mockInitialize).toHaveBeenCalledWith({ channelKey });
+    describe('when invalid configuration present', () => {
+      let config: ZendeskInitializeConfig;
+
+      beforeEach(() => {
+        config = faker.helpers.arrayElement([
+          // invalid formats
+          {} as ZendeskInitializeConfig,
+          { channelKey: '' }
+        ]);
+      });
+
+      it('should throw error', async () => {
+        await expect(Zendesk.initialize(config)).rejects.toThrow(ZendeskMessagingError);
+      });
     });
   });
 
@@ -93,18 +113,38 @@ describe('react-native-zendesk-messaging', () => {
   describe('when call sendPageViewEvent', () => {
     let pageTitle: string;
     let url: string;
-    let mockSendPageViewEvent: jest.SpyInstance;
 
-    beforeEach(async () => {
-      pageTitle = faker.word.noun();
-      url = faker.internet.url();
-      mockSendPageViewEvent = jest.spyOn(ZendeskMessagingModule, 'sendPageViewEvent');
-      await Zendesk.sendPageViewEvent({ pageTitle, url });
+    describe('when valid event data present', () => {
+      let mockSendPageViewEvent: jest.SpyInstance;
+
+      beforeEach(async () => {
+        pageTitle = faker.word.noun();
+        url = faker.internet.url();
+        mockSendPageViewEvent = jest.spyOn(ZendeskMessagingModule, 'sendPageViewEvent');
+        await Zendesk.sendPageViewEvent({ pageTitle, url });
+      });
+
+      it('should call native module\'s sendPageViewEvent method', () => {
+        expect(mockSendPageViewEvent).toHaveBeenCalledTimes(1);
+        expect(mockSendPageViewEvent).toHaveBeenCalledWith({ pageTitle, url });
+      });
     });
 
-    it('should call native module\'s sendPageViewEvent method', () => {
-      expect(mockSendPageViewEvent).toHaveBeenCalledTimes(1);
-      expect(mockSendPageViewEvent).toHaveBeenCalledWith({ pageTitle, url });
+    describe('when invalid event data present', () => {
+      let event: ZendeskPageViewEvent;
+
+      beforeEach(() => {
+        event = faker.helpers.arrayElement([
+          // invalid formats
+          {} as ZendeskPageViewEvent,
+          { pageTitle } as ZendeskPageViewEvent,
+          { url } as ZendeskPageViewEvent,
+        ]);
+      });
+
+      it('should throw error', async () => {
+        await expect(Zendesk.sendPageViewEvent(event)).rejects.toThrow(ZendeskMessagingError);
+      });
     });
   });
 
