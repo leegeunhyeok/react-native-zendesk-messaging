@@ -85,11 +85,11 @@ import messaging from '@react-native-firebase/messaging';
 import * as Zendesk from 'react-native-zendesk-messaging';
 
 messaging().getToken().then((token) => {
-  Zendesk.setPushNotificationToken(token);
+  Zendesk.updatePushNotificationToken(token);
 });
 
 messaging().onTokenRefresh((token) => {
-  Zendesk.setPushNotificationToken(token);
+  Zendesk.updatePushNotificationToken(token);
 });
 
 messaging().onMessage(async (remoteMessage) => {
