@@ -118,7 +118,7 @@ class ZendeskMessaging: RCTEventEmitter {
 
     DispatchQueue.main.async {
       guard let viewController = ZendeskNativeModule.shared.getMessagingViewController(),
-            let rootController = UIApplication.shared.windows.first!.rootViewController else {
+            let rootController = RCTPresentedViewController() else {
         reject(nil, "cannot open messaging view", nil)
         return
       }
