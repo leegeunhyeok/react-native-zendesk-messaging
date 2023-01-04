@@ -3,6 +3,7 @@
 ## Index
 
 - [initialize](#initialize)
+- [reset](#reset)
 - [login](#login)
 - [logout](#logout)
 - [openMessagingView](#openmessagingview)
@@ -47,6 +48,31 @@ initialize({ channelKey: 'YOUR_ZENDESK_CHANNEL_KEY' });
 - References
   - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/getting_started/#initialize-the-sdk)
   - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/getting_started/#initialize-the-sdk)
+
+## reset
+
+Invalidates the current instance of Zendesk.
+After calling this method you will have to call [initialize](#initialize) again if you would like to use Zendesk.
+
+- Return Value
+  | Type |
+  |:--|
+  | `void` |
+
+```ts
+/* interfaces */
+
+function reset(): void
+```
+
+
+```ts
+reset();
+```
+
+- References
+  - [Android SDK](https://zendesk.github.io/mobile_sdk_javadocs/zendesk/zendesk-android/latest/zendesk/android/Zendesk.Companion.html#invalidate())
+  - [iOS SDK](https://zendesk.github.io/sdk_zendesk_ios/Zendesk/#zendesk.invalidate())
 
 ## login
 
