@@ -39,6 +39,8 @@ class ZendeskNativeModule private constructor() {
     messagingFactory = messagingFactory,
   )
 
+  fun reset() = Zendesk.invalidate()
+
   fun addEventListener(listener: ZendeskEventListener) = Zendesk.instance.addEventListener(listener)
 
   fun loginUser(

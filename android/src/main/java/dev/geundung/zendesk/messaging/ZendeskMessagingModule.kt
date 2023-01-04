@@ -70,6 +70,12 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
+  fun reset() {
+    module.reset()
+    initialized = false
+  }
+
+  @ReactMethod
   fun login(token: String, promise: Promise) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")

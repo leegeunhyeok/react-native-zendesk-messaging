@@ -18,6 +18,10 @@ class ZendeskNativeModule: NSObject {
     )
   }
 
+  func reset() -> Void {
+    Zendesk.invalidate()
+  }
+
   func addEventObserver(
     _ observer: AnyObject,
     _ completionHandler: @escaping (ZendeskSDK.ZendeskEvent) -> Void

@@ -8,6 +8,8 @@ RCT_EXTERN_METHOD(initialize:(NSDictionary*)config
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(reset)
+
 RCT_EXTERN_METHOD(login:(NSString*)token
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)

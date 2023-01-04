@@ -9,6 +9,7 @@ jest.mock('react-native', () => {
 
   reactNative.NativeModules.ZendeskMessaging = {
     initialize: jest.fn(),
+    reset: jest.fn(),
     login: jest.fn(),
     logout: jest.fn(),
     openMessagingView: jest.fn(),
@@ -57,6 +58,19 @@ describe('react-native-zendesk-messaging', () => {
       it('should throw error', async () => {
         await expect(Zendesk.initialize(CONFIG)).rejects.toThrow(ZendeskMessagingError);
       });
+    });
+  });
+
+  describe('when call reset', () => {
+    let mockReset: jest.SpyInstance;
+
+    beforeEach(() => {
+      mockReset = jest.spyOn(ZendeskMessagingModule, 'reset');
+      Zendesk.reset();
+    });
+
+    it('should call native module\'s reset method', () => {
+      expect(mockReset).toHaveBeenCalledTimes(1);
     });
   });
 

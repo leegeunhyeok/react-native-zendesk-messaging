@@ -65,6 +65,16 @@ class ZendeskMessaging: RCTEventEmitter {
     }
   }
 
+  /**
+   `invalidate` identifier is already defined  in RCTEventEmitter.
+   so, using another name for this method.
+   */
+  @objc(reset)
+  func reset() {
+    ZendeskNativeModule.shared.reset()
+    initialized = false
+  }
+
   @objc(login:resolver:rejecter:)
   func login(
     token: String,

@@ -40,6 +40,10 @@ export function initialize(config: ZendeskInitializeConfig): Promise<void> {
   return ZendeskMessaging.initialize(config);
 }
 
+export function reset(): void {
+  return ZendeskMessaging.reset();
+}
+
 export function login(token: string): Promise<ZendeskUser> {
   if (typeof token !== 'string' || !token.length) {
     return Promise.reject(new ZendeskMessagingError('invalid token'));
