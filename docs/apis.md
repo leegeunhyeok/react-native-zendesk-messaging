@@ -194,7 +194,7 @@ sendPageViewEvent({
 
 ## updatePushNotificationToken
 
-> :rotating_light: Android only
+> :rotating_light: It works on Android only (iOS do nothing)
 
 To enable a device to receive push notifications, you must notify the SDK when a new FCM token has been created.
 
