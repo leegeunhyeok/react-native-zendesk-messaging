@@ -22,6 +22,10 @@ class ZendeskMessaging: RCTEventEmitter {
 
   private func setupEventObserver(withInstance: Zendesk) -> Void {
     ZendeskNativeModule.shared.addEventObserver(self) { event in
+      if !hasListener {
+        return
+      }
+
       switch event {
       case .unreadMessageCountChanged(let unreadCount):
         self.sendEvent(withName: "unreadMessageCountChanged", body: ["unreadCount": unreadCount])
