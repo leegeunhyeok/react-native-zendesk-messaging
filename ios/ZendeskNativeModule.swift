@@ -60,12 +60,12 @@ class ZendeskNativeModule: NSObject {
   }
 
   @objc(updatePushNotificationToken:)
-  func updatePushNotificationToken(_ token: Data) -> Void {
+  static func updatePushNotificationToken(_ token: Data) -> Void {
     PushNotifications.updatePushNotificationToken(token)
   }
 
   @objc(handleNotification:completionHandler:)
-  func handleNotification(
+  static func handleNotification(
     _ userInfo: [AnyHashable: Any],
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
   ) -> Bool {

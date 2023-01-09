@@ -135,7 +135,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 #endif
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [[ZendeskNativeModule shared] updatePushNotificationToken:deviceToken];
+  [ZendeskNativeModule updatePushNotificationToken:deviceToken];
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
@@ -143,7 +143,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
 
   id userInfo = notification.request.content.userInfo;
-  BOOL isHandled = [[ZendeskNativeModule shared] handleNotification:userInfo completionHandler:completionHandler];
+  BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
 
   if (isHandled) return;
 
