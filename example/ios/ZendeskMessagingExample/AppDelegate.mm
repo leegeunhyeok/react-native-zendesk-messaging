@@ -143,7 +143,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
 
   id userInfo = notification.request.content.userInfo;
-  BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
+  BOOL isHandled = [ZendeskNativeModule showNotification:userInfo completionHandler:completionHandler];
 
   if (isHandled) return;
 
@@ -151,6 +151,19 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
   // If not handled, you should call the `completionHandler` before end of `userNotificationCenter` method
   completionHandler(UNNotificationPresentationOptionNone);
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+        didReceiveNotificationResponse:(UNNotificationResponse *)response
+        withCompletionHandler:(void (^)(void))completionHandler {
+
+    id userInfo = response.notification.request.content.userInfo;
+
+    BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
+
+    if (isHandled) return;
+
+    completionHandler();
 }
 
 - (void)registerForPushNotifications {

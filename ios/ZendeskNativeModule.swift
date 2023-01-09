@@ -64,8 +64,8 @@ class ZendeskNativeModule: NSObject {
     PushNotifications.updatePushNotificationToken(token)
   }
 
-  @objc(handleNotification:completionHandler:)
-  static func handleNotification(
+  @objc(showNotification:completionHandler:)
+  static func showNotification(
     _ userInfo: [AnyHashable: Any],
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
   ) -> Bool {
@@ -81,6 +81,31 @@ class ZendeskNativeModule: NSObject {
       }
     case .messagingShouldNotDisplay:
       completionHandler([])
+    case .notFromMessaging:
+      fallthrough
+    @unknown default:
+      handled = false
+    }
+
+    return handled
+  }
+
+  @objc(handleNotification:completionHandler:)
+  static func handleNotification(
+    _ userInfo: [AnyHashable: Any],
+    withCompletionHandler completionHandler: @escaping () -> Void
+  ) -> Bool {
+    var handled = true
+    let shouldBeDisplayed = PushNotifications.shouldBeDisplayed(userInfo)
+
+    switch shouldBeDisplayed {
+    case .messagingShouldDisplay:
+      PushNotifications.handleTap(userInfo) { _ in
+        // Handle displaying the returned viewController in here
+      }
+      completionHandler()
+    case .messagingShouldNotDisplay:
+      completionHandler()
     case .notFromMessaging:
       fallthrough
     @unknown default:

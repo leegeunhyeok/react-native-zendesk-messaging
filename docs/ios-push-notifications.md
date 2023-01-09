@@ -39,19 +39,39 @@ Follow [official guide](https://developer.zendesk.com/documentation/zendesk-web-
 
 ```objectivec
 // `AppDelegate.m` or `AppDelegate.mm`
+
+// (1. Show push notifications)
+// ZendeskNativeModule.showNotification
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
         willPresentNotification:(UNNotification *)notification
         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
 
   id userInfo = notification.request.content.userInfo;
-  BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
+  BOOL isHandled = [ZendeskNativeModule showNotification:userInfo completionHandler:completionHandler];
 
-  // remote message was handled by Zendesk SDK
   if (isHandled) return;
 
   // other handing code here
 
   // If not handled, you should call the `completionHandler` before end of `userNotificationCenter` method
   completionHandler(UNNotificationPresentationOptionNone);
+}
+
+// (2. Handle tap notifications)
+// ZendeskNativeModule.handleNotification
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+        didReceiveNotificationResponse:(UNNotificationResponse *)response
+        withCompletionHandler:(void (^)(void))completionHandler {
+
+  id userInfo = response.notification.request.content.userInfo;
+
+  BOOL isHandled = [ZendeskNativeModule handleNotification:userInfo completionHandler:completionHandler];
+
+  if (isHandled) return;
+
+  // other handing code here
+
+  // If not handled, you should call the `completionHandler` before end of `userNotificationCenter` method
+  completionHandler();
 }
 ```

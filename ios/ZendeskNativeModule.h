@@ -5,6 +5,7 @@
 @interface ZendeskNativeModule : NSObject
 
 + (void)updatePushNotificationToken:(NSData * _Nonnull)token;
-+ (BOOL)handleNotification:(id _Nonnull)userInfo completionHandler:(void (^_Nonnull)(UNNotificationPresentationOptions))completionHandler;
++ (BOOL)showNotification:(id _Nonnull)userInfo completionHandler:(void (^_Nonnull)(UNNotificationPresentationOptions))completionHandler;
++ (BOOL)handleNotification:(id _Nonnull)userInfo completionHandler:(void (^)(void))completionHandler;
 
 @end
