@@ -1,6 +1,6 @@
 {
   "name": "react-native-zendesk-messaging",
-  "version": "0.1.0-rc.4",
+  "version": "0.1.0-rc.5",
   "description": "Zendesk messaging SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
