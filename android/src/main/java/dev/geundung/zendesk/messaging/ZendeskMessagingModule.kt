@@ -55,6 +55,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       promise.resolve(null)
       return
     }
+    val channelKey = config.getString("channelKey") as String
 
     module.initialize(
       context = reactContext,
@@ -125,8 +126,8 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       promise.reject(null, "Zendesk instance not initialized")
       return
     }
-    val pageTitle = event.getString("pageTitle")
-    val url = event.getString("pageTitle")
+    val pageTitle = event.getString("pageTitle") as String
+    val url = event.getString("pageTitle") as String
     val pageView = PageView(url = url, pageTitle = pageTitle)
 
     module.sendPageViewEvent(
