@@ -1,9 +1,11 @@
 import Foundation
+import React
 import ZendeskSDK
 import ZendeskSDKMessaging
 
 @objc(ZendeskNativeModule)
 class ZendeskNativeModule: NSObject {
+  private static var receivedUserInfo: [AnyHashable: Any]?
   static let shared = ZendeskNativeModule()
 
   func initialize(
@@ -100,8 +102,8 @@ class ZendeskNativeModule: NSObject {
 
     switch shouldBeDisplayed {
     case .messagingShouldDisplay:
-      PushNotifications.handleTap(userInfo) { _ in
-        // Handle displaying the returned viewController in here
+      openMessageViewByPushNotification(userInfo) { openBeforeInitialize in
+        receivedUserInfo = openBeforeInitialize ? userInfo : nil
       }
       completionHandler()
     case .messagingShouldNotDisplay:
@@ -113,5 +115,35 @@ class ZendeskNativeModule: NSObject {
     }
 
     return handled
+  }
+
+  /// NOTE:
+  /// This method dependent on handleNotification.
+  ///
+  /// Store userInfo(from notification payload) temporary and re-call handleTap for showing messaging view
+  /// because PushNotifications.handleTap always return nil when messaging is not initialized
+  ///
+  /// eg. inactivated app, start up application via Zendesk push notification
+  /// expect showing messaging view, but handleNotification will be called before initialize
+  /// = (do nothing, not showing messaging view)
+  static func openMessageViewByPushNotification(
+    _ userInfo: [AnyHashable: Any]? = nil,
+    completionHandler: ((Bool) -> Void)? = nil
+  ) -> Void {
+    guard let userInfo = userInfo ?? receivedUserInfo else {
+      completionHandler?(false)
+      return
+    }
+
+    PushNotifications.handleTap(userInfo) { viewController in
+      receivedUserInfo = nil
+      guard let rootController = RCTPresentedViewController(),
+            let viewController = viewController else {
+        completionHandler?(viewController == nil)
+        return
+      }
+      rootController.show(viewController, sender: self)
+      completionHandler?(false)
+    }
   }
 }

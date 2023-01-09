@@ -1,5 +1,6 @@
 export interface ZendeskInitializeConfig {
   channelKey: string;
+  skipOpenMessaging?: boolean;
 }
 
 export interface ZendeskPageViewEvent {

@@ -37,7 +37,7 @@ export function initialize(config: ZendeskInitializeConfig): Promise<void> {
   if (typeof config.channelKey !== 'string') {
     return Promise.reject(new ZendeskMessagingError('invalid channelKey'));
   }
-  return ZendeskMessaging.initialize(config);
+  return ZendeskMessaging.initialize({ skipOpenMessaging: false, ...config });
 }
 
 export function reset(): void {

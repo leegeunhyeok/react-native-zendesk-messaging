@@ -44,7 +44,7 @@ class ZendeskMessaging: RCTEventEmitter {
 
   @objc(initialize:resolver:rejecter:)
   func initialize(
-    config: [String: String],
+    config: [String: Any],
     resolver resolve: @escaping RCTPromiseResolveBlock,
     rejecter reject: @escaping RCTPromiseRejectBlock
   ) -> Void {
@@ -52,16 +52,23 @@ class ZendeskMessaging: RCTEventEmitter {
       resolve(nil)
       return
     }
-    let channelKey = config["channelKey"]
+
+    // swiftlint:disable force_cast
+    let channelKey = config["channelKey"] as! String
+    // swiftlint:disable force_cast
+    let skipOpenMessaging = config["skipOpenMessaging"] as! Bool
 
     ZendeskNativeModule.shared.initialize(
-      withChannelKey: channelKey!,
+      withChannelKey: channelKey,
       messagingFactory: DefaultMessagingFactory()
     ) { result in
       switch result {
       case .success(let zendesk):
         self.setupEventObserver(withInstance: zendesk)
         self.initialized = true
+        if !skipOpenMessaging {
+          ZendeskNativeModule.openMessageViewByPushNotification()
+        }
         resolve(nil)
       case .failure(let error):
         reject(nil, "initialize failed", error)
