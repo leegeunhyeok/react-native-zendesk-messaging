@@ -22,7 +22,7 @@ class ZendeskMessaging: RCTEventEmitter {
 
   private func setupEventObserver(withInstance: Zendesk) -> Void {
     ZendeskNativeModule.shared.addEventObserver(self) { event in
-      if !hasListener {
+      if !self.hasListener {
         return
       }
 
