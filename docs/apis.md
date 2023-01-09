@@ -35,6 +35,7 @@ You should call this function first before using other features.
 
 interface ZendeskInitializeConfig {
   channelKey: string;
+  skipOpenMessaging?: boolean; // iOS Only
 }
 
 function initialize(config: ZendeskInitializeConfig): Promise<void>
@@ -44,6 +45,12 @@ function initialize(config: ZendeskInitializeConfig): Promise<void>
 ```ts
 initialize({ channelKey: 'YOUR_ZENDESK_CHANNEL_KEY' });
 ```
+
+- `channelKey`: Zendesk channel key
+- `skipOpenMessaging`: skip open messaging view after initialize successfully (default: `false`, iOS only)
+  - application started by Zendesk push notification, showing messaging view for users.
+
+---
 
 - References
   - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/getting_started/#initialize-the-sdk)
