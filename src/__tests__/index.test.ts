@@ -37,18 +37,19 @@ describe('react-native-zendesk-messaging', () => {
 
   describe('when call initialize', () => {
     describe('when valid configuration present', () => {
+      const DEFAULT_OPTIONS = { skipOpenMessaging: false } as const;
       let channelKey: string;
       let mockInitialize: jest.SpyInstance;
 
       beforeEach(async () => {
         channelKey = faker.datatype.uuid();
         mockInitialize = jest.spyOn(ZendeskMessagingModule, 'initialize');
-        await Zendesk.initialize({ channelKey });
+        await Zendesk.initialize({ ...DEFAULT_OPTIONS, channelKey });
       });
 
       it('should call native module\'s initialize method', () => {
         expect(mockInitialize).toHaveBeenCalledTimes(1);
-        expect(mockInitialize).toHaveBeenCalledWith({ channelKey });
+        expect(mockInitialize).toHaveBeenCalledWith({ ...DEFAULT_OPTIONS, channelKey });
       });
     });
 
