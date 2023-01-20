@@ -5,6 +5,7 @@
 - [Android](#android)
 - [iOS](#ios)
 - [Push Notifications](#push-notifications)
+- [Known Issues](#known-issues)
 
 ## Android
 
@@ -70,3 +71,20 @@ https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/get
 
 - [Android guide](./android-push-notifications.md)
 - [iOS guide](./ios-push-notifications.md)
+
+## Known Issues
+
+- Android
+  - [SDK Docs](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/known_issues)
+  - ProGuard issue on Android
+    - Crash log
+    ```
+    java.lang.NoSuchFieldException: CONVERSATION_START
+    AssertionError: Missing field in in.a
+    ```
+    - Add rule to your `proguard-rules.pro`
+    ```
+    -keepnames class zendesk.** { *; }
+    ```
+- iOS
+  - [SDK Docs](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/known_issues)
