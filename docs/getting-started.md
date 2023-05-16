@@ -4,6 +4,7 @@
 
 - [Android](#android)
 - [iOS](#ios)
+- [Overriding SDK versions](#overriding-sdk-versions)
 - [Push Notifications](#push-notifications)
 - [Known Issues](#known-issues)
 
@@ -36,16 +37,25 @@ https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android
   }
   ```
 
----
+## iOS
 
-You can override SDK version like this
+https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/getting_started
+
+- Step 1. Install pods
+  ```sh
+  cd ios && pod install
+  ```
+
+## Overriding SDK versions
+
+### Android
 
 ```gradle
-// Your root build.gradle
+// android/build.gradle
 buildscript {
   ext {
     ...
-    zendeskSdkVersion = "2.3.0" // default version is "2.3.0"
+    zendeskSdkVersion = "2.11.0" // default version is "2.8.0"
   }
 }
 ```
@@ -58,14 +68,15 @@ buildscript {
     - Kotlin version: 1.6.x
 - For more details, checkout [release notes](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/release_notes)
 
-## iOS
+### iOS
 
-https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/getting_started
 
-- Step 1. Install pods
-  ```sh
-  cd ios && pod install
-  ```
+```ruby
+...
+# ios/Podfile
+
+$ZendeskSDKVersion = '2.11.0' # default version is '2.8.0'
+```
 
 ## Push Notifications
 
