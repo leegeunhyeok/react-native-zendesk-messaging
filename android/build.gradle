@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
   def kotlinVersion = rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : project.properties["ZendeskMessaging_kotlinVersion"]
@@ -33,6 +35,10 @@ def getExtOrIntegerDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["ZendeskMessaging_" + name]).toInteger()
 }
 
+def packageJson = new JsonSlurper().parse file('../package.json')
+def kotlinVersion = getExtOrDefault("kotlinVersion")
+def zendeskSdkVersion = rootProject.ext.has("zendeskSdkVersion") ? rootProject.ext.get("zendeskSdkVersion") : packageJson.sdkVersions.android
+
 android {
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
 
@@ -65,9 +71,6 @@ repositories {
     url "https://zendesk.jfrog.io/artifactory/repo"
   }
 }
-
-def kotlinVersion = getExtOrDefault("kotlinVersion")
-def zendeskSdkVersion = getExtOrDefault("zendeskSdkVersion")
 
 dependencies {
   // For < 0.71, this will be from the local maven repo

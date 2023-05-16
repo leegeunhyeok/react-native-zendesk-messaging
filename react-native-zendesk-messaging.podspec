@@ -1,6 +1,8 @@
 require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+sdk_version = package["sdkVersions"]["ios"]
+
 folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
 
 Pod::Spec.new do |s|
@@ -16,8 +18,13 @@ Pod::Spec.new do |s|
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
+  if defined?($ZendeskSDKVersion)
+    Pod::UI.puts "#{s.name}: Using user specified Zendesk messaging SDK version '#{$ZendeskSDKVersion}'"
+    sdk_version = $ZendeskSDKVersion
+  end
+
   s.dependency "React-Core"
-  s.dependency "ZendeskSDKMessaging"
+  s.dependency "ZendeskSDKMessaging", sdk_version
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then
