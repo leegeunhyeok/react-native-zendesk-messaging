@@ -89,6 +89,10 @@
   "engines": {
     "node": ">= 16.0.0"
   },
+  "sdkVersions": {
+    "android": "2.8.0",
+    "ios": "2.8.0"
+  },
   "packageManager": "^yarn@1.22.15",
   "commitlint": {
     "extends": [
