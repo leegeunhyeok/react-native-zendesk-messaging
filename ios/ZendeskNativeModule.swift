@@ -118,14 +118,46 @@ class ZendeskNativeModule: NSObject {
   }
 
   /// NOTE:
-  /// This method dependent on handleNotification.
+  /// This method resolves race condition of push notification(handleNotification).
   ///
-  /// Store userInfo(from notification payload) temporary and re-call handleTap for showing messaging view
-  /// because PushNotifications.handleTap always return nil when messaging is not initialized
+  /// From inactivated app, when start up application via Zendesk push notification,
+  /// expect showing messaging view, but  not showing because handleNotification called before initialize
   ///
-  /// eg. inactivated app, start up application via Zendesk push notification
-  /// expect showing messaging view, but handleNotification will be called before initialize
-  /// = (do nothing, not showing messaging view)
+  /// Situation
+  /// 1. Launch app via Zendesk push notification
+  /// 2. (Race condition here)
+  /// |
+  /// +-+- [A-1]. didReceiveNotificationResponse called (on AppDelegate)
+  ///   |  [A-2]. ZendeskNativeModule.handleNotification called
+  ///   |
+  ///   +- [B]. Load react-native bundle and Zendesk.initialize called on JS
+  ///
+  /// On [A-2] if Zendesk module isn't initialized yet,
+  /// handleNotification will do nothing because zendesk is not initialized.
+  /// should initialized before call handleNotification
+  ///
+  /// Mechanism
+  ///
+  /// > Using completionHandler for result flag(openBeforeInitialize)
+  ///
+  /// 1. call openMessageViewByPushNotification
+  /// 2. check userInfo
+  ///    [case 1]. If exist -> keep going
+  ///    [case 2]. If not exist -> call completionHandler with `false`
+  /// 3. call PushNotifications.handleTap
+  ///    [case 1]. viewController provided when zendesk is initialized
+  ///    - open messaging view
+  ///    - call completionHandler with `false`
+  ///    [case 2]. viewController is nil when zendesk is not initialized
+  ///    - call completionHandler with `true`
+  ///    - store userInfo temporary into receivedUserInfo
+  /// 4. call ZendeskNativeModule.initialize and success
+  ///    [case 1]. skipOpenMessaging is enabled
+  ///    - Do nothing (push notification will ignored)
+  ///    [case 2]. skipOpenMessaging is disabled (default)
+  ///    - call openMessageViewByPushNotification again
+  ///    - receivedUserInfo exist and call PushNotifications.handleTap
+  ///    - viewController is provided -> open messaging view
   static func openMessageViewByPushNotification(
     _ userInfo: [AnyHashable: Any]? = nil,
     completionHandler: ((Bool) -> Void)? = nil
