@@ -78,6 +78,10 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+
+  // If you want to change Zendesk SDK version, see the document below.
+  // https://github.com/leegeunhyeok/react-native-zendesk-messaging/blob/master/docs/getting-started.md#overriding-sdk-versions
   implementation "zendesk.messaging:messaging-android:$zendeskSdkVersion"
 }
 

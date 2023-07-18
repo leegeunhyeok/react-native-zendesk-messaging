@@ -24,6 +24,9 @@ Pod::Spec.new do |s|
   end
 
   s.dependency "React-Core"
+
+  # If you want to change Zendesk SDK version, see the document below.
+  # https://github.com/leegeunhyeok/react-native-zendesk-messaging/blob/master/docs/getting-started.md#overriding-sdk-versions
   s.dependency "ZendeskSDKMessaging", sdk_version
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
