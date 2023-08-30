@@ -33,6 +33,16 @@ npm install react-native-zendesk-messaging
 yarn add react-native-zendesk-messaging
 ```
 
+For Android, add the following script inside `android/build.gradle`
+```
+allprojects {
+    repositories {
+        maven {
+            url "https://zendesk.jfrog.io/artifactory/repo"
+        }
+    }
+}
+```
 ## Getting Started
 
 Read [Getting Started Guide](./docs/getting-started.md).
