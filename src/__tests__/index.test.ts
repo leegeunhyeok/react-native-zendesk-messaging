@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow -- test */
 import { NativeModules, type Platform as RNPlatform } from 'react-native';
 import { faker } from '@faker-js/faker';
 import * as Zendesk from '../index';
@@ -14,6 +15,10 @@ jest.mock('react-native', () => {
     logout: jest.fn(),
     openMessagingView: jest.fn(),
     sendPageViewEvent: jest.fn(),
+    setConversationFields: jest.fn(),
+    clearConversationFields: jest.fn(),
+    setConversationTags: jest.fn(),
+    clearConversationTags: jest.fn(),
     updatePushNotificationToken: jest.fn(),
     getUnreadMessageCount: jest.fn(),
     handleNotification: jest.fn(),
@@ -152,6 +157,94 @@ describe('react-native-zendesk-messaging', () => {
       it('should throw error', async () => {
         await expect(Zendesk.sendPageViewEvent(event)).rejects.toThrow(ZendeskMessagingError);
       });
+    });
+  });
+
+  describe('when call setConversationFields', () => {
+    let fieldId: string;
+    let fieldData: string;
+
+    describe('when valid event data present', () => {
+      let mockSetConversationFields: jest.SpyInstance;
+
+      beforeEach(() => {
+        fieldId = faker.random.numeric(10);
+        fieldData = faker.internet.url();
+        mockSetConversationFields = jest.spyOn(ZendeskMessagingModule, 'setConversationFields');
+        Zendesk.setConversationFields({ [fieldId]: fieldData });
+      });
+
+      it('should call native module\'s setConversationFields method', () => {
+        expect(mockSetConversationFields).toHaveBeenCalledTimes(1);
+        expect(mockSetConversationFields).toHaveBeenCalledWith({ [fieldId]: fieldData });
+      });
+    });
+
+    describe('when invalid field data is present', () => {
+      let fieldId: string;
+
+      beforeEach(() => {
+        fieldId = faker.random.numeric(10);
+      });
+
+      it('should throw error', () => {
+        // @ts-expect-error for invalid data test
+        expect(() => { Zendesk.setConversationFields({ [fieldId]: {} }); })
+          .toThrow(ZendeskMessagingError);
+      });
+    });
+  });
+
+  describe('when call clearConversationFields', () => {
+    let mockClearConversationFields: jest.SpyInstance;
+
+    beforeEach(() => {
+      mockClearConversationFields = jest.spyOn(ZendeskMessagingModule, 'clearConversationFields');
+      Zendesk.clearConversationFields();
+    });
+
+    it('should call native module\'s clearConversationFields method', () => {
+      expect(mockClearConversationFields).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('when call setConversationTags', () => {
+    let tags: string[];
+
+    describe('when valid event data present', () => {
+      let mockSetConversationTags: jest.SpyInstance;
+
+      beforeEach(() => {
+        tags = faker.lorem.words(3).split(' ');
+        mockSetConversationTags = jest.spyOn(ZendeskMessagingModule, 'setConversationTags');
+        Zendesk.setConversationTags(tags);
+      });
+
+      it('should call native module\'s setConversationTags method', () => {
+        expect(mockSetConversationTags).toHaveBeenCalledTimes(1);
+        expect(mockSetConversationTags).toHaveBeenCalledWith(tags);
+      });
+    });
+
+    describe('when invalid tag data is present', () => {
+      it('should throw error', () => {
+        // @ts-expect-error for invalid data test
+        expect(() => { Zendesk.setConversationTags([null]); })
+          .toThrow(ZendeskMessagingError);
+      });
+    });
+  });
+
+  describe('when call clearConversationTags', () => {
+    let mockClearConversationTags: jest.SpyInstance;
+
+    beforeEach(() => {
+      mockClearConversationTags = jest.spyOn(ZendeskMessagingModule, 'clearConversationTags');
+      Zendesk.clearConversationTags();
+    });
+
+    it('should call native module\'s clearConversationTags method', () => {
+      expect(mockClearConversationTags).toHaveBeenCalledTimes(1);
     });
   });
 
