@@ -170,6 +170,42 @@ class ZendeskMessaging: RCTEventEmitter {
     }
   }
 
+  @objc(setConversationFields:)
+  func setConversationFields(fields: [String: AnyHashable]) -> Void {
+    if !initialized {
+      return
+    }
+
+    ZendeskNativeModule.shared.setConversationFields(fields)
+  }
+
+  @objc(clearConversationFields)
+  func clearConversationFields() -> Void {
+    if !initialized {
+      return
+    }
+
+    ZendeskNativeModule.shared.clearConversationFields()
+  }
+
+  @objc(setConversationTags:)
+  func setConversationTags(tags: [String]) -> Void {
+    if !initialized {
+      return
+    }
+
+    ZendeskNativeModule.shared.setConversationTags(tags)
+  }
+
+  @objc(clearConversationTags)
+  func clearConversationTags() -> Void {
+    if !initialized {
+      return
+    }
+
+    ZendeskNativeModule.shared.clearConversationTags()
+  }
+
   @objc(getUnreadMessageCount:rejecter:)
   func getUnreadMessageCount(
     resolver resolve: @escaping RCTPromiseResolveBlock,

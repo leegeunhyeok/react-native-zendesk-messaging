@@ -24,6 +24,12 @@ RCT_EXTERN_METHOD(sendPageViewEvent:(NSDictionary*)event
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(setConversationFields:(NSDictionary*)fields)
+RCT_EXTERN_METHOD(clearConversationFields)
+
+RCT_EXTERN_METHOD(setConversationTags:(NSArray*)tags)
+RCT_EXTERN_METHOD(clearConversationTags)
+
 RCT_EXTERN_METHOD(getUnreadMessageCount:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 

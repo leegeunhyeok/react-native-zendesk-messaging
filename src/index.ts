@@ -66,6 +66,46 @@ export function sendPageViewEvent(event: ZendeskPageViewEvent): Promise<void> {
   return ZendeskMessaging.sendPageViewEvent(event);
 }
 
+/**
+ * Required SDK version: `>= 2.13.0`
+ */
+export function setConversationFields(fields: Record<string, string | number | boolean>): void {
+  if (Object.values(fields).some((value) =>
+    !(
+      typeof value === 'string' ||
+      typeof value === 'number' ||
+      typeof value === 'boolean')
+    )
+  ) {
+    throw new ZendeskMessagingError('invalid fields');
+  }
+  ZendeskMessaging.setConversationFields(fields);
+}
+
+/**
+ * Required SDK version: `>= 2.13.0`
+ */
+export function clearConversationFields(): void {
+  ZendeskMessaging.clearConversationFields();
+}
+
+/**
+ * Required SDK version: `>= 2.13.0`
+ */
+export function setConversationTags(tags: string[]): void {
+  if (tags.some((value) => typeof value !== 'string')) {
+    throw new ZendeskMessagingError('invalid tags');
+  }
+  ZendeskMessaging.setConversationTags(tags);
+}
+
+/**
+ * Required SDK version: `>= 2.13.0`
+ */
+export function clearConversationTags(): void {
+  ZendeskMessaging.clearConversationTags();
+}
+
 export function updatePushNotificationToken(token: string): void {
   if (Platform.OS !== 'android') return;
   return ZendeskMessaging.updatePushNotificationToken(token);
