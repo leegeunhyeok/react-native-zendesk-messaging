@@ -59,7 +59,7 @@ https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/get
 buildscript {
   ext {
     ...
-    zendeskSdkVersion = "2.11.0" // default version is "2.8.0"
+    zendeskSdkVersion = "2.11.0" // default version is "2.13.0"
   }
 }
 ```
@@ -79,7 +79,7 @@ buildscript {
 ...
 # ios/Podfile
 
-$ZendeskSDKVersion = '2.11.0' # default version is '2.8.0'
+$ZendeskSDKVersion = '2.11.0' # default version is '2.13.0'
 ```
 
 ## Push Notifications
