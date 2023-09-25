@@ -164,7 +164,7 @@ describe('react-native-zendesk-messaging', () => {
     let fieldId: string;
     let fieldData: string;
 
-    describe('when valid event data present', () => {
+    describe('when valid field data is present', () => {
       let mockSetConversationFields: jest.SpyInstance;
 
       beforeEach(() => {
@@ -211,7 +211,7 @@ describe('react-native-zendesk-messaging', () => {
   describe('when call setConversationTags', () => {
     let tags: string[];
 
-    describe('when valid event data present', () => {
+    describe('when valid tag data is present', () => {
       let mockSetConversationTags: jest.SpyInstance;
 
       beforeEach(() => {
