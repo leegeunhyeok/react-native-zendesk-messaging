@@ -8,6 +8,10 @@
 - [Push Notifications](#push-notifications)
 - [Known Issues](#known-issues)
 
+## Requirements
+
+- `>= TypeScript 3.8`
+
 ## Android
 
 https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/getting_started

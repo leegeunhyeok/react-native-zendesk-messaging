@@ -2,8 +2,8 @@ import {
   NativeModules,
   NativeEventEmitter,
   Platform,
-  type EmitterSubscription,
 } from 'react-native';
+import type { EmitterSubscription } from 'react-native';
 import { ZendeskMessagingError } from './error';
 import type {
   ZendeskInitializeConfig,
