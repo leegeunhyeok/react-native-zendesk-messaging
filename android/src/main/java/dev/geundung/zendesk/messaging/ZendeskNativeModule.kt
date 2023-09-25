@@ -63,6 +63,16 @@ class ZendeskNativeModule private constructor() {
     failureCallback: FailureCallback<Throwable>,
   ) = Zendesk.instance.sendPageView(pageView, successCallback, failureCallback)
 
+  fun setConversationFields(
+    fields: Map<String, Any>,
+  ) = Zendesk.instance.messaging.setConversationFields(fields)
+
+  fun clearConversationFields() = Zendesk.instance.messaging.clearConversationFields()
+
+  fun setConversationTags(tags: List<String>) = Zendesk.instance.messaging.setConversationTags(tags)
+
+  fun clearConversationTags() = Zendesk.instance.messaging.clearConversationTags()
+
   fun setNotificationSmallIconId(resourceId: Int?) =
     PushNotifications.setNotificationSmallIconId(resourceId)
 

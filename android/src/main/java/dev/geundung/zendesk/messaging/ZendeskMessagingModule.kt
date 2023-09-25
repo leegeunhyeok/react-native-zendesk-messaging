@@ -6,6 +6,7 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
@@ -135,6 +136,47 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       successCallback = { _ -> promise.resolve(null) },
       failureCallback = { error -> promise.reject(error) },
     )
+  }
+
+  @ReactMethod
+  fun setConversationFields(fields: ReadableMap) {
+    if (!initialized) {
+      return
+    }
+
+    module.setConversationFields(fields.toHashMap())
+  }
+
+  @ReactMethod
+  fun clearConversationFields() {
+    if (!initialized) {
+      return
+    }
+
+    module.clearConversationFields()
+  }
+
+  @ReactMethod
+  fun setConversationTags(tags: ReadableArray) {
+    if (!initialized) {
+      return
+    }
+
+    val convertedTags: MutableList<String> = mutableListOf()
+    tags.toArrayList().forEach {
+      if (it is String) convertedTags.add(it)
+    }
+
+    module.setConversationTags(convertedTags)
+  }
+
+  @ReactMethod
+  fun clearConversationTags() {
+    if (!initialized) {
+      return
+    }
+
+    module.clearConversationTags()
   }
 
   @ReactMethod
