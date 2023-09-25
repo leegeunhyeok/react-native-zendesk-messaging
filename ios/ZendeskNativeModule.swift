@@ -57,6 +57,26 @@ class ZendeskNativeModule: NSObject {
     Zendesk.instance?.sendPageViewEvent(pageView, completionHandler: completionHandler)
   }
 
+  func setConversationFields(
+    _ fields: [String: AnyHashable]
+  ) {
+    Zendesk.instance?.messaging?.setConversationFields(fields)
+  }
+
+  func clearConversationFields() {
+    Zendesk.instance?.messaging?.clearConversationFields()
+  }
+
+  func setConversationTags(
+    _ tags: [String]
+  ) {
+    Zendesk.instance?.messaging?.setConversationTags(tags)
+  }
+
+  func clearConversationTags() {
+    Zendesk.instance?.messaging?.clearConversationTags()
+  }
+
   func getUnreadMessageCount() -> Int? {
     return Zendesk.instance?.messaging?.getUnreadMessageCount()
   }
