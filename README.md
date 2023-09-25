@@ -22,6 +22,7 @@
 - ✅ Support SDK events
 - 🔑 User Authentication
 - 🚗 Visitor Path
+- 📝 Conversation Metadata(fields and tags)
 
 Read official announcement about new messaging SDKs [here](https://support.zendesk.com/hc/en-us/articles/4408882490778).
 

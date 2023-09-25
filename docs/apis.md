@@ -8,6 +8,10 @@
 - [logout](#logout)
 - [openMessagingView](#openmessagingview)
 - [sendPageViewEvent](#sendpageviewevent)
+- [setConversationFields](#setconversationfields)
+- [clearConversationFields](#clearconversationFields)
+- [setConversationTags](#setconversationtags)
+- [clearConversationTags](#clearconversationtags)
 - [updatePushNotificationToken](#updatepushnotificationtoken)
 - [getUnreadMessageCount](#getunreadmessagecount)
 - [handleNotification](#handlenotification)
@@ -198,6 +202,130 @@ sendPageViewEvent({
 - References
   - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#page-view-event)
   - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/advanced_integration/#page-view-event)
+
+## setConversationFields
+
+Allows values for conversation fields to be set in the SDK to add contextual data about the conversation.
+
+> [!NOTE]
+>
+> Conversation fields are not immediately associated with a conversation when the API is called. Calling the API will store the conversation fields, but those fields will only be applied to a conversation when end users either start a new conversation or send a new message in an existing conversation.
+
+> [!NOTE]
+>
+> An event for handling failed validation checks on conversation fields set using the setConversationFields API will be added in an upcoming release of the Zendesk SDK.
+
+- Parameters
+  | Name | Type | Required |
+  |:--|:--|:--|
+  | fields | `Record<string, string | number | boolean>` | Yes |
+- Return Value
+  | Type |
+  |:--|
+  | `void` |
+
+
+```ts
+/* interfaces */
+
+function setConversationFields(fields: Record<string, string | number | boolean>): void
+```
+
+```ts
+setConversationFields({ '4422761977114': 'FA2590' });
+```
+
+- References
+  - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#set-conversation-fields)
+  - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/advanced_integration/#set-conversation-fields)
+
+## clearConversationFields
+
+You can clear conversation fields from the SDK storage when the client side context changes. To do this, use the `clearConversationFields` API. This removes all stored conversation fields from the SDK storage.
+
+> ![NOTE]
+>
+> This API does not affect conversation fields already applied to the conversation.
+
+- Return Value
+  | Type |
+  |:--|
+  | `void` |
+
+```ts
+/* interfaces */
+
+function clearConversationFields(): void
+```
+
+```ts
+clearConversationFields();
+```
+
+- References
+  - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#clear-conversation-fields)
+  - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/advanced_integration/#clear-conversation-fields)
+
+## setConversationTags
+
+Allows custom conversation tags to be set in the SDK to add contextual data about the conversation.
+
+To use conversation tags, refer to [Using Messaging Metadata with the Zendesk Web Widgets and SDKs](https://support.zendesk.com/hc/en-us/articles/5658339908378).
+
+> [!NOTE]
+>
+> Conversation tags are not immediately associated with a conversation when the API is called. It will only be applied to a conversation when end users either start a new conversation or send a new message in an existing conversation.
+
+- Parameters
+  | Name | Type | Required |
+  |:--|:--|:--|
+  | tags | `string[]` | Yes |
+- Return Value
+  | Type |
+  |:--|
+  | `void` |
+
+
+```ts
+/* interfaces */
+
+function setConversationTags(tags: string[]): void
+```
+
+```ts
+setConversationTags(['promo_code', 'discount']);
+```
+
+- References
+  - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#set-conversation-tags)
+  - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/advanced_integration/#set-conversation-tags)
+
+## clearConversationTags
+
+Allows you to clear conversation tags from SDK storage when the client side context changes. To do this, use the `clearConversationTags` API. This removes all stored conversation tags from the SDK storage.
+
+> [!NOTE]
+>
+> This API does not affect conversation tags already applied to the conversation.
+
+- Return Value
+  | Type |
+  |:--|
+  | `void` |
+
+```ts
+/* interfaces */
+
+function clearConversationTags(): void
+```
+
+```ts
+clearConversationTags();
+```
+
+- References
+  - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#set-conversation-tags)
+  - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/advanced_integration/#set-conversation-tags)
 
 ## updatePushNotificationToken
 
