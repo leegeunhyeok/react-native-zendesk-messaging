@@ -21,7 +21,7 @@ RCT_EXTERN_METHOD(openMessagingView:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(sendPageViewEvent:(NSDictionary*)event
-                  resolver(RCTPromiseResolveBlock)resolve
+                  resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(getUnreadMessageCount:(RCTPromiseResolveBlock)resolve
