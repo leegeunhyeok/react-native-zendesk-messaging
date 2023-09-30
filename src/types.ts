@@ -23,7 +23,7 @@ export type ZendeskEventType = keyof ZendeskEventResponse;
 export type ZendeskEvent<Type extends ZendeskEventType> =
   ZendeskEventResponse[Type];
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions -- allow type
 type ZendeskEventResponse = {
   unreadMessageCountChanged: {
     unreadCount: number;

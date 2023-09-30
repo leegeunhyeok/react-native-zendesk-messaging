@@ -31,7 +31,7 @@ describe('react-native-zendesk-messaging', () => {
   let Platform: typeof RNPlatform;
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires -- test
     Platform = require('react-native').Platform;
   });
 
