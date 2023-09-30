@@ -9,5 +9,5 @@ const config: Config = {
   ],
 };
 
-// eslint-disable-next-line import/no-default-export
+// eslint-disable-next-line import/no-default-export -- test
 export default config;
