@@ -243,7 +243,7 @@ setConversationFields({ '4422761977114': 'FA2590' });
 
 You can clear conversation fields from the SDK storage when the client side context changes. To do this, use the `clearConversationFields` API. This removes all stored conversation fields from the SDK storage.
 
-> ![NOTE]
+> [!NOTE]
 >
 > This API does not affect conversation fields already applied to the conversation.
 
@@ -329,7 +329,9 @@ clearConversationTags();
 
 ## updatePushNotificationToken
 
-> :rotating_light: It works on Android only (iOS do nothing)
+> [!IMPORTANT]
+>
+> Android only (noop for others)
 
 To enable a device to receive push notifications, you must notify the SDK when a new FCM token has been created.
 
@@ -385,7 +387,9 @@ Handle remote message that received from FCM(Firebase Cloud Messaging) and show 
 
 If remote message isn't Zendesk message, it does nothing.
 
-> :rotating_light: Android only
+> [!IMPORTANT]
+>
+> Android only (always returns `UNKNOWN` for others)
 >
 > This method for integrate with [@react-native-firebase/messaging](https://rnfirebase.io/reference/messaging).
 >
