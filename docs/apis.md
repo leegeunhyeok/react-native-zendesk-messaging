@@ -9,7 +9,7 @@
 - [openMessagingView](#openmessagingview)
 - [sendPageViewEvent](#sendpageviewevent)
 - [setConversationFields](#setconversationfields)
-- [clearConversationFields](#clearconversationFields)
+- [clearConversationFields](#clearconversationfields)
 - [setConversationTags](#setconversationtags)
 - [clearConversationTags](#clearconversationtags)
 - [updatePushNotificationToken](#updatepushnotificationtoken)
