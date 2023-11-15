@@ -207,6 +207,17 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     }
   }
 
+  @ReactMethod
+  fun addListener(type: String?) {
+      // noop
+  }
+
+  @ReactMethod
+  fun removeListeners(type: Int?) {
+      // noop
+  }
+
+
   companion object {
     const val NAME = "ZendeskMessaging"
   }
