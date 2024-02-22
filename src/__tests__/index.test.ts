@@ -14,6 +14,7 @@ jest.mock('react-native', () => {
     login: jest.fn(),
     logout: jest.fn(),
     openMessagingView: jest.fn(),
+    closeMessagingView: jest.fn(),
     sendPageViewEvent: jest.fn(),
     setConversationFields: jest.fn(),
     clearConversationFields: jest.fn(),
@@ -119,6 +120,48 @@ describe('react-native-zendesk-messaging', () => {
 
     it('should call native module\'s openMessagingView method', () => {
       expect(mockOpenMessagingView).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('when call closeMessagingView', () => {
+    let mockCloseMessagingView: jest.SpyInstance;
+
+    describe('when platform is iOS', () => {
+      beforeAll(() => {
+        Platform.OS = 'ios';
+      });
+
+      beforeEach(async () => {
+        mockCloseMessagingView = jest.spyOn(ZendeskMessagingModule, 'closeMessagingView');
+        await Zendesk.closeMessagingView();
+      });
+
+      afterAll(() => {
+        mockCloseMessagingView.mockClear();
+      });
+
+      it('should call native module\'s openMessagingView method', () => {
+        expect(mockCloseMessagingView).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('when platform is Android', () => {
+      beforeAll(() => {
+        Platform.OS = 'android';
+      });
+
+      beforeEach(async () => {
+        mockCloseMessagingView = jest.spyOn(ZendeskMessagingModule, 'closeMessagingView');
+        await Zendesk.closeMessagingView();
+      });
+
+      afterAll(() => {
+        mockCloseMessagingView.mockClear();
+      });
+
+      it('should call native module\'s openMessagingView method', () => {
+        expect(mockCloseMessagingView).not.toHaveBeenCalled();
+      });
     });
   });
 

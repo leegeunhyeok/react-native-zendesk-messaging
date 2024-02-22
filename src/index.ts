@@ -91,6 +91,20 @@ export function openMessagingView(): Promise<void> {
 }
 
 /**
+ * **iOS Only** (no-op for other platform, always return empty promise)
+ *
+ * Closes the messaging view if it is open. Doesn't work on Android.
+ * Returns a promise that resolves when the messaging view is closed.
+ *
+ * N.B. This is not a part of the official Zendesk SDK, but a custom implementation.
+ */
+
+export function closeMessagingView(): Promise<void> {
+  if (Platform.OS !== 'ios') return Promise.resolve();
+  return ZendeskMessaging.closeMessagingView();
+}
+
+/**
  * Send session-based page view event. event must have `pageTitle` and `url`.
  *
  * @see Android {@link https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/advanced_integration/#page-view-event}
