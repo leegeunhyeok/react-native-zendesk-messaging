@@ -147,6 +147,26 @@ class ZendeskMessaging: RCTEventEmitter {
     }
   }
 
+  @objc(closeMessagingView:rejecter:)
+  func closeMessagingView(
+    resolver resolve: @escaping RCTPromiseResolveBlock,
+    rejecter reject: @escaping RCTPromiseRejectBlock
+  ) -> Void {
+    if !initialized {
+      reject(nil, "Zendesk instance not initialized", nil)
+      return
+    }
+
+    DispatchQueue.main.async {
+      guard let rootController = RCTPresentedViewController() else {
+        reject(nil, "cannot close messaging view", nil)
+        return
+      }
+      rootController.dismiss(animated: true, completion: nil)
+      resolve(nil)
+    }
+  }
+
   @objc(sendPageViewEvent:resolver:rejecter:)
   func sendPageViewEvent(
     event: [String: String],

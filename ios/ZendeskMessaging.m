@@ -20,6 +20,9 @@ RCT_EXTERN_METHOD(logout:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(openMessagingView:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(closeMessagingView:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(sendPageViewEvent:(NSDictionary*)event
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
