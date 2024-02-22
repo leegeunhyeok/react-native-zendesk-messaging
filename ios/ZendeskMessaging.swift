@@ -158,11 +158,11 @@ class ZendeskMessaging: RCTEventEmitter {
     }
 
     DispatchQueue.main.async {
-      guard let rootController = RCTPresentedViewController() else {
+      guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
         reject(nil, "cannot close messaging view", nil)
         return
       }
-      rootController.dismiss(animated: true, completion: nil)
+      rootViewController.dismiss(animated: true, completion: nil)
       resolve(nil)
     }
   }
