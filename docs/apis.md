@@ -7,6 +7,7 @@
 - [login](#login)
 - [logout](#logout)
 - [openMessagingView](#openmessagingview)
+- [closeMessagingView](#closeMessagingView)
 - [sendPageViewEvent](#sendpageviewevent)
 - [setConversationFields](#setconversationfields)
 - [clearConversationFields](#clearconversationfields)
@@ -165,6 +166,30 @@ openMessagingView();
 - References
   - [Android SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/android/getting_started/#show-the-conversation)
   - [iOS SDK](https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/ios/getting_started/#show-the-conversation)
+
+## closeMessagingView
+
+> [!IMPORTANT]
+>
+> iOS only (no-op for other platform, always return empty promise)
+
+Close the messaging view if it is open.
+
+- Return Value
+  | Type |
+  |:--|
+  | `Promise<void>` |
+
+```ts
+/* interfaces */
+
+function closeMessagingView(): Promise<void>
+```
+
+
+```ts
+closeMessagingView();
+```
 
 ## sendPageViewEvent
 
@@ -331,7 +356,7 @@ clearConversationTags();
 
 > [!IMPORTANT]
 >
-> Android only (noop for others)
+> Android only (no-op for other platform, always return empty promise)
 
 To enable a device to receive push notifications, you must notify the SDK when a new FCM token has been created.
 
