@@ -41,6 +41,7 @@ def zendeskSdkVersion = rootProject.ext.has("zendeskSdkVersion") ? rootProject.e
 
 android {
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
+  namespace "dev.geundung.zendesk.messaging"
 
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
@@ -85,10 +86,3 @@ dependencies {
   implementation "zendesk.messaging:messaging-android:$zendeskSdkVersion"
 }
 
-if (isNewArchitectureEnabled()) {
-  react {
-    jsRootDir = file("../src/")
-    libraryName = "ZendeskMessaging"
-    codegenJavaPackageName = "dev.geundung.zendesk.messaging"
-  }
-}

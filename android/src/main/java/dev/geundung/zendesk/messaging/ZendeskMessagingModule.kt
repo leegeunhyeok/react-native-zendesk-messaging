@@ -23,7 +23,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
     return NAME
   }
 
-  private fun sendEvent(eventName: String, params: WritableMap?) {
+  private fun sendEvent(
+    eventName: String,
+    params: WritableMap?,
+  ) {
     reactContext
       .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
       .emit(eventName, params)
@@ -51,7 +54,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
-  fun initialize(config: ReadableMap, promise: Promise) {
+  fun initialize(
+    config: ReadableMap,
+    promise: Promise,
+  ) {
     if (initialized) {
       promise.resolve(null)
       return
@@ -78,7 +84,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
-  fun login(token: String, promise: Promise) {
+  fun login(
+    token: String,
+    promise: Promise,
+  ) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")
       return
@@ -122,7 +131,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
-  fun sendPageViewEvent(event: ReadableMap, promise: Promise) {
+  fun sendPageViewEvent(
+    event: ReadableMap,
+    promise: Promise,
+  ) {
     if (!initialized) {
       promise.reject(null, "Zendesk instance not initialized")
       return
@@ -195,7 +207,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   }
 
   @ReactMethod
-  fun handleNotification(remoteMessage: ReadableMap, promise: Promise) {
+  fun handleNotification(
+    remoteMessage: ReadableMap,
+    promise: Promise,
+  ) {
     try {
       val messageData = remoteMessage.toHashMap().toMap() as Map<String, String>
       module.handleNotification(
@@ -209,14 +224,13 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
 
   @ReactMethod
   fun addListener(type: String?) {
-      // noop
+    // noop
   }
 
   @ReactMethod
   fun removeListeners(type: Int?) {
-      // noop
+    // noop
   }
-
 
   companion object {
     const val NAME = "ZendeskMessaging"

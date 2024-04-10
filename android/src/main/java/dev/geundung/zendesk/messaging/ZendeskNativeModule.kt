@@ -54,8 +54,10 @@ class ZendeskNativeModule private constructor() {
     failureCallback: FailureCallback<Throwable>,
   ) = Zendesk.instance.logoutUser(successCallback, failureCallback)
 
-  fun showMessaging(context: Context, intentFlags: Int) =
-    Zendesk.instance.messaging.showMessaging(context, intentFlags)
+  fun showMessaging(
+    context: Context,
+    intentFlags: Int,
+  ) = Zendesk.instance.messaging.showMessaging(context, intentFlags)
 
   fun sendPageViewEvent(
     pageView: PageView,
@@ -63,9 +65,7 @@ class ZendeskNativeModule private constructor() {
     failureCallback: FailureCallback<Throwable>,
   ) = Zendesk.instance.sendPageView(pageView, successCallback, failureCallback)
 
-  fun setConversationFields(
-    fields: Map<String, Any>,
-  ) = Zendesk.instance.messaging.setConversationFields(fields)
+  fun setConversationFields(fields: Map<String, Any>) = Zendesk.instance.messaging.setConversationFields(fields)
 
   fun clearConversationFields() = Zendesk.instance.messaging.clearConversationFields()
 
@@ -73,14 +73,11 @@ class ZendeskNativeModule private constructor() {
 
   fun clearConversationTags() = Zendesk.instance.messaging.clearConversationTags()
 
-  fun setNotificationSmallIconId(resourceId: Int?) =
-    PushNotifications.setNotificationSmallIconId(resourceId)
+  fun setNotificationSmallIconId(resourceId: Int?) = PushNotifications.setNotificationSmallIconId(resourceId)
 
-  fun updatePushNotificationToken(newToken: String) =
-    PushNotifications.updatePushNotificationToken(newToken)
+  fun updatePushNotificationToken(newToken: String) = PushNotifications.updatePushNotificationToken(newToken)
 
-  fun getUnreadMessageCount() =
-    Zendesk.instance?.messaging?.getUnreadMessageCount()
+  fun getUnreadMessageCount() = Zendesk.instance?.messaging?.getUnreadMessageCount()
 
   fun handleNotification(
     context: Context,
