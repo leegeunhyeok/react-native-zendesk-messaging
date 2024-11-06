@@ -93,7 +93,7 @@
     "android": "2.13.0",
     "ios": "2.13.0"
   },
-  "packageManager": "^yarn@3.8.0",
+  "packageManager": "yarn@1.22.22",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
