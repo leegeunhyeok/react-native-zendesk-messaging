@@ -189,12 +189,27 @@ class ZendeskNativeModule: NSObject {
 
     PushNotifications.handleTap(userInfo) { viewController in
       receivedUserInfo = nil
-      guard let rootController = RCTPresentedViewController(),
-            let viewController = viewController else {
-        completionHandler?(viewController == nil)
+      // Ensure root controller is a navigation controller, otherwise handle it differently
+      guard let rootController = RCTPresentedViewController() else {
+        completionHandler?(false)
         return
       }
-      rootController.show(viewController, sender: self)
+
+      if let navigationController = rootController as? UINavigationController {
+        // If there's a navigation controller, push the Zendesk view onto the stack
+        if let zendeskVC = viewController {
+          navigationController.pushViewController(zendeskVC, animated: true)
+        } else {
+          completionHandler?(false)
+        }
+      } else {
+        // If no navigation controller exists, present the Zendesk view directly
+        if let zendeskVC = viewController {
+          rootController.show(zendeskVC, sender: self)
+        } else {
+          completionHandler?(false)
+        }
+      }
       completionHandler?(false)
     }
   }
