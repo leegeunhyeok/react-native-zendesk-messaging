@@ -126,26 +126,36 @@ class ZendeskMessaging: RCTEventEmitter {
     }
   }
 
-  @objc(openMessagingView:rejecter:)
-  func openMessagingView(
-    resolver resolve: @escaping RCTPromiseResolveBlock,
-    rejecter reject: @escaping RCTPromiseRejectBlock
-  ) -> Void {
-    if !initialized {
-      reject(nil, "Zendesk instance not initialized", nil)
+@objc(openMessagingView:rejecter:)
+func openMessagingView(
+  resolver resolve: @escaping RCTPromiseResolveBlock,
+  rejecter reject: @escaping RCTPromiseRejectBlock
+) -> Void {
+  if !initialized {
+    reject(nil, "Zendesk instance not initialized", nil)
+    return
+  }
+
+  DispatchQueue.main.async {
+    guard let viewController = ZendeskNativeModule.shared.getMessagingViewController(),
+          let rootController = RCTPresentedViewController() else {
+      reject(nil, "cannot open messaging view", nil)
       return
     }
 
-    DispatchQueue.main.async {
-      guard let viewController = ZendeskNativeModule.shared.getMessagingViewController(),
-            let rootController = RCTPresentedViewController() else {
-        reject(nil, "cannot open messaging view", nil)
-        return
-      }
-      rootController.show(viewController, sender: self)
-      resolve(nil)
+    // Check if the rootController has a navigation controller
+    if let navigationController = rootController.navigationController {
+      // If navigation controller exists, push Zendesk view as a full screen
+      navigationController.pushViewController(viewController, animated: true)
+    } else {
+      // If there's no navigation controller, create one and push Zendesk view
+      let navigationController = UINavigationController(rootViewController: viewController)
+      rootController.present(navigationController, animated: true, completion: nil)
     }
+
+    resolve(nil)
   }
+}
 
   @objc(closeMessagingView:rejecter:)
   func closeMessagingView(
