@@ -1,5 +1,5 @@
 {
-  "name": "react-native-zendesk-messaging",
+  "name": "@agorasystems/react-native-zendesk-messaging",
   "version": "0.2.1",
   "description": "Zendesk messaging SDK for React Native",
   "main": "lib/commonjs/index",
@@ -44,7 +44,7 @@
     "android",
     "zendesk"
   ],
-  "repository": "https://github.com/leegeunhyeok/react-native-zendesk-messaging",
+  "repository": "https://github.com/AgoraSystems/react-native-zendesk-messaging.git",
   "author": "leegeunhyeok <dev.ghlee@gmail.com> (https://github.com/leegeunhyeok)",
   "license": "MIT",
   "bugs": {
@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/leegeunhyeok/react-native-zendesk-messaging#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.7.0",
