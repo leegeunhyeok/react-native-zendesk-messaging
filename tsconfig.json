@@ -1,5 +1,4 @@
 {
-  "extends": "@vercel/style-guide/typescript",
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
