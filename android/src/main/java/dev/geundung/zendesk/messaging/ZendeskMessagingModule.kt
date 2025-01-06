@@ -66,7 +66,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
         initialized = true
         promise.resolve(null)
       },
-      failureCallback = { error -> promise.reject(error) },
+      failureCallback = { error -> promise.reject("initialize", error.toString()) },
       messagingFactory = DefaultMessagingFactory(),
     )
   }
@@ -80,7 +80,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   @ReactMethod
   fun login(token: String, promise: Promise) {
     if (!initialized) {
-      promise.reject(null, "Zendesk instance not initialized")
+      promise.reject("login", "Zendesk instance not initialized")
       return
     }
 
@@ -92,14 +92,14 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
         data.putString("externalId", user.externalId)
         promise.resolve(data)
       },
-      failureCallback = { error -> promise.reject(error) },
+      failureCallback = { error -> promise.reject("login", error.toString()) },
     )
   }
 
   @ReactMethod
   fun logout(promise: Promise) {
     if (!initialized) {
-      promise.reject(null, "Zendesk instance not initialized")
+      promise.reject("logout", "Zendesk instance not initialized")
       return
     }
 
@@ -112,7 +112,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   @ReactMethod
   fun openMessagingView(promise: Promise) {
     if (!initialized) {
-      promise.reject(null, "Zendesk instance not initialized")
+      promise.reject("openMessagingView", "Zendesk instance not initialized")
       return
     }
 
@@ -124,7 +124,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   @ReactMethod
   fun sendPageViewEvent(event: ReadableMap, promise: Promise) {
     if (!initialized) {
-      promise.reject(null, "Zendesk instance not initialized")
+      promise.reject("sendPageViewEvent", "Zendesk instance not initialized")
       return
     }
     val pageTitle = event.getString("pageTitle") as String
@@ -187,7 +187,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   @ReactMethod
   fun getUnreadMessageCount(promise: Promise) {
     if (!initialized) {
-      promise.reject(null, "Zendesk instance not initialized")
+      promise.reject("getUnreadMessageCount", "Zendesk instance not initialized")
       return
     }
 
@@ -203,7 +203,7 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
         messageData = messageData,
       ) { responsibility -> promise.resolve(responsibility) }
     } catch (error: Exception) {
-      promise.reject(error)
+      promise.reject("handleNotification", error.toString())
     }
   }
 
