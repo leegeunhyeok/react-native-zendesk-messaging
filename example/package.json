@@ -1,5 +1,5 @@
 {
-  "name": "ZendeskMessagingExample",
+  "name": "zendesk-messaging-example",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

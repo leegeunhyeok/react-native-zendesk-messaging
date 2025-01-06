@@ -4393,22 +4393,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ZendeskMessagingExample@workspace:example":
-  version: 0.0.0-use.local
-  resolution: "ZendeskMessagingExample@workspace:example"
-  dependencies:
-    "@babel/core": "npm:^7.12.9"
-    "@babel/runtime": "npm:^7.12.5"
-    "@types/react": "npm:18.0.38"
-    "@types/react-native": "npm:0.70.14"
-    babel-plugin-module-resolver: "npm:^4.1.0"
-    metro-react-native-babel-preset: "npm:0.72.3"
-    react: "npm:18.1.0"
-    react-native: "npm:0.70.6"
-    typescript: "npm:^5.2.2"
-  languageName: unknown
-  linkType: soft
-
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"
@@ -16538,3 +16522,19 @@ __metadata:
   checksum: 10c0/85903f7fa96f1c70badee94789fade709f9d83dab2ec92753d612d84fcea6d34c772337a9f8914c6bed2f5fc03a428ac5d893e76fab636da5f1236ab725486d0
   languageName: node
   linkType: hard
+
+"zendesk-messaging-example@workspace:example":
+  version: 0.0.0-use.local
+  resolution: "zendesk-messaging-example@workspace:example"
+  dependencies:
+    "@babel/core": "npm:^7.12.9"
+    "@babel/runtime": "npm:^7.12.5"
+    "@types/react": "npm:18.0.38"
+    "@types/react-native": "npm:0.70.14"
+    babel-plugin-module-resolver: "npm:^4.1.0"
+    metro-react-native-babel-preset: "npm:0.72.3"
+    react: "npm:18.1.0"
+    react-native: "npm:0.70.6"
+    typescript: "npm:^5.2.2"
+  languageName: unknown
+  linkType: soft
