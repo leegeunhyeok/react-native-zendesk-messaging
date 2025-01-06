@@ -12,15 +12,12 @@
     "react-native": "0.70.6"
   },
   "devDependencies": {
-    "@types/react": "18.0.38",
-    "@types/react-native": "0.70.14",
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "metro-react-native-babel-preset": "0.72.3",
+    "@types/react": "18.0.38",
+    "@types/react-native": "0.70.14",
     "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "0.72.3",
     "typescript": "^5.2.2"
-  },
-  "resolutions": {
-    "@types/react": "18.0.38"
   }
 }

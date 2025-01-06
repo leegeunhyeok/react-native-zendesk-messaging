@@ -80,7 +80,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.20.0, @babel/core@npm:^7.24.0, @babel/core@npm:^7.25.2":
+"@babel/core@npm:^7.12.9, @babel/core@npm:^7.20.0, @babel/core@npm:^7.24.0, @babel/core@npm:^7.25.2":
   version: 7.26.0
   resolution: "@babel/core@npm:7.26.0"
   dependencies:
@@ -2263,7 +2263,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.25.0":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.25.0":
   version: 7.26.0
   resolution: "@babel/runtime@npm:7.26.0"
   dependencies:
@@ -4393,6 +4393,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ZendeskMessagingExample@workspace:example":
+  version: 0.0.0-use.local
+  resolution: "ZendeskMessagingExample@workspace:example"
+  dependencies:
+    "@babel/core": "npm:^7.12.9"
+    "@babel/runtime": "npm:^7.12.5"
+    "@types/react": "npm:18.0.38"
+    "@types/react-native": "npm:0.70.14"
+    babel-plugin-module-resolver: "npm:^4.1.0"
+    metro-react-native-babel-preset: "npm:0.72.3"
+    react: "npm:18.1.0"
+    react-native: "npm:0.70.6"
+    typescript: "npm:^5.2.2"
+  languageName: unknown
+  linkType: soft
+
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"
@@ -5042,6 +5058,19 @@ __metadata:
     "@types/babel__core": "npm:^7.1.14"
     "@types/babel__traverse": "npm:^7.0.6"
   checksum: 10c0/7e6451caaf7dce33d010b8aafb970e62f1b0c0b57f4978c37b0d457bbcf0874d75a395a102daf0bae0bd14eafb9f6e9a165ee5e899c0a4f1f3bb2e07b304ed2e
+  languageName: node
+  linkType: hard
+
+"babel-plugin-module-resolver@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "babel-plugin-module-resolver@npm:4.1.0"
+  dependencies:
+    find-babel-config: "npm:^1.2.0"
+    glob: "npm:^7.1.6"
+    pkg-up: "npm:^3.1.0"
+    reselect: "npm:^4.0.0"
+    resolve: "npm:^1.13.1"
+  checksum: 10c0/b1348f310cf714895b1af86c50fb05f6da42d4920d1435dee5eee57cb94c1e594bc8dfa09b92fe747c974f800dfdd9780807ba90e40b71bcea5eb1ca5f3740a4
   languageName: node
   linkType: hard
 
@@ -7864,6 +7893,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"find-babel-config@npm:^1.2.0":
+  version: 1.2.2
+  resolution: "find-babel-config@npm:1.2.2"
+  dependencies:
+    json5: "npm:^1.0.2"
+    path-exists: "npm:^3.0.0"
+  checksum: 10c0/c82631323b055a3ea8d2dbc42593d243dddf39ec20e83bb6aad847d77676829f4a2bdf507c5177bc9d2d4509a5e239a6023631f1e8b8011ab16d44d227c65639
+  languageName: node
+  linkType: hard
+
 "find-babel-config@npm:^2.1.1":
   version: 2.1.2
   resolution: "find-babel-config@npm:2.1.2"
@@ -8359,7 +8398,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.0, glob@npm:^7.1.3, glob@npm:^7.1.4":
+"glob@npm:^7.0.0, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
   version: 7.2.3
   resolution: "glob@npm:7.2.3"
   dependencies:
@@ -13875,7 +13914,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reselect@npm:^4.1.7":
+"reselect@npm:^4.0.0, reselect@npm:^4.1.7":
   version: 4.1.8
   resolution: "reselect@npm:4.1.8"
   checksum: 10c0/06a305a504affcbb67dd0561ddc8306b35796199c7e15b38934c80606938a021eadcf68cfd58e7bb5e17786601c37602a3362a4665c7bf0a96c1041ceee9d0b7
@@ -13946,7 +13985,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.22.8":
+"resolve@npm:^1.13.1, resolve@npm:^1.22.8":
   version: 1.22.10
   resolution: "resolve@npm:1.22.10"
   dependencies:
@@ -14008,7 +14047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.22.8#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.13.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.8#optional!builtin<compat/resolve>":
   version: 1.22.10
   resolution: "resolve@patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=c3c19d"
   dependencies:
@@ -15691,7 +15730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.7.2":
+"typescript@npm:^5.2.2, typescript@npm:^5.7.2":
   version: 5.7.2
   resolution: "typescript@npm:5.7.2"
   bin:
@@ -15701,7 +15740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.2
   resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5786d5"
   bin:
