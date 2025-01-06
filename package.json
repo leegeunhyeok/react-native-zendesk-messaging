@@ -60,9 +60,9 @@
     "@faker-js/faker": "^9.3.0",
     "@react-native-community/eslint-config": "^3.2.0",
     "@types/jest": "^29",
+    "@types/node": "^22",
     "@types/react": "18.0.38",
     "@types/react-native": "0.70.14",
-    "@types/node": "^22",
     "@vercel/style-guide": "^6.0.0",
     "commitlint": "^19.6.1",
     "del-cli": "^6.0.0",
@@ -90,7 +90,7 @@
     "android": "2.13.0",
     "ios": "2.13.0"
   },
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@4.6.0",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
