@@ -48,7 +48,7 @@ describe('react-native-zendesk-messaging', () => {
       let mockInitialize: jest.SpyInstance;
 
       beforeEach(async () => {
-        channelKey = faker.datatype.uuid();
+        channelKey = faker.string.uuid();
         mockInitialize = jest.spyOn(ZendeskMessagingModule, 'initialize');
         await Zendesk.initialize({ ...DEFAULT_OPTIONS, channelKey });
       });
@@ -86,7 +86,7 @@ describe('react-native-zendesk-messaging', () => {
     let mockLogin: jest.SpyInstance;
 
     beforeEach(async () => {
-      token = faker.random.alphaNumeric();
+      token = faker.string.alphanumeric();
       mockLogin = jest.spyOn(ZendeskMessagingModule, 'login');
       await Zendesk.login(token);
     });
@@ -211,7 +211,7 @@ describe('react-native-zendesk-messaging', () => {
       let mockSetConversationFields: jest.SpyInstance;
 
       beforeEach(() => {
-        fieldId = faker.random.numeric(10);
+        fieldId = faker.string.numeric(10);
         fieldData = faker.internet.url();
         mockSetConversationFields = jest.spyOn(ZendeskMessagingModule, 'setConversationFields');
         Zendesk.setConversationFields({ [fieldId]: fieldData });
@@ -227,7 +227,7 @@ describe('react-native-zendesk-messaging', () => {
       let fieldId: string;
 
       beforeEach(() => {
-        fieldId = faker.random.numeric(10);
+        fieldId = faker.string.numeric(10);
       });
 
       it('should throw error', () => {
@@ -301,7 +301,7 @@ describe('react-native-zendesk-messaging', () => {
       });
 
       beforeEach(() => {
-        token = faker.random.alphaNumeric();
+        token = faker.string.alphanumeric();
         mockUpdatePushNotificationToken = jest.spyOn(ZendeskMessagingModule, 'updatePushNotificationToken');
         Zendesk.updatePushNotificationToken(token);
       });
