@@ -1,19 +1,20 @@
 import React from 'react';
-import { StyleSheet, Pressable, Text } from 'react-native';
-import type { PressableProps } from 'react-native';
+import { StyleSheet, Pressable, Text, type PressableProps } from 'react-native';
 
 interface ButtonProps extends Omit<PressableProps, 'children'> {
   label: string;
 }
 
-export const Button = ({
+export function Button({
   label,
   ...restProps
-}: ButtonProps): React.ReactElement => (
-  <Pressable style={styles.button} {...restProps}>
-    <Text style={styles.buttonLabel}>{label}</Text>
-  </Pressable>
-);
+}: ButtonProps): React.ReactElement {
+  return (
+    <Pressable style={styles.button} {...restProps}>
+      <Text style={styles.buttonLabel}>{label}</Text>
+    </Pressable>
+  );
+}
 
 const styles = StyleSheet.create({
   button: {

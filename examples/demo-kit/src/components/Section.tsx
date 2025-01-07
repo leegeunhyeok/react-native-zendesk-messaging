@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { type PropsWithChildren } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import type { PropsWithChildren } from 'react';
 
 interface SectionProps extends PropsWithChildren {
   title?: string;
@@ -10,23 +9,25 @@ interface SectionProps extends PropsWithChildren {
 
 const GAP = 16;
 
-export const Section = ({
+export function Section({
   children,
   title,
   required = false,
   hideSeparator = false,
-}: SectionProps): React.ReactElement => (
-  <View style={styles.section}>
-    {title ? (
-      <Text style={styles.sectionTitle}>
-        {title}
-        {required ? <Text style={styles.required}>{'*'}</Text> : null}
-      </Text>
-    ) : null}
-    {children}
-    {hideSeparator ? null : <View style={styles.separator} />}
-  </View>
-);
+}: SectionProps): React.ReactElement {
+  return (
+    <View style={styles.section}>
+      {title ? (
+        <Text style={styles.sectionTitle}>
+          {title}
+          {required ? <Text style={styles.required}>{'*'}</Text> : null}
+        </Text>
+      ) : null}
+      {children}
+      {hideSeparator ? null : <View style={styles.separator} />}
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   section: {
