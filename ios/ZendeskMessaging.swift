@@ -126,26 +126,31 @@ class ZendeskMessaging: RCTEventEmitter {
     }
   }
 
-  @objc(openMessagingView:rejecter:)
-  func openMessagingView(
-    resolver resolve: @escaping RCTPromiseResolveBlock,
-    rejecter reject: @escaping RCTPromiseRejectBlock
-  ) -> Void {
-    if !initialized {
-      reject(nil, "Zendesk instance not initialized", nil)
+ @objc(openMessagingView:rejecter:)
+func openMessagingView(
+  resolver resolve: @escaping RCTPromiseResolveBlock,
+  rejecter reject: @escaping RCTPromiseRejectBlock
+) -> Void {
+  if !initialized {
+    reject(nil, "Zendesk instance not initialized", nil)
+    return
+  }
+  DispatchQueue.main.async {
+    guard let viewController = ZendeskNativeModule.shared.getMessagingViewController(),
+          let rootController = RCTPresentedViewController() else {
+      reject(nil, "cannot open messaging view", nil)
       return
     }
 
-    DispatchQueue.main.async {
-      guard let viewController = ZendeskNativeModule.shared.getMessagingViewController(),
-            let rootController = RCTPresentedViewController() else {
-        reject(nil, "cannot open messaging view", nil)
-        return
-      }
-      rootController.show(viewController, sender: self)
-      resolve(nil)
+    if let navigationController = rootController.navigationController {
+      navigationController.pushViewController(viewController, animated: true)
+    } else {
+      let navigationController = UINavigationController(rootViewController: viewController)
+      rootController.present(navigationController, animated: true, completion: nil)
     }
+    resolve(nil)
   }
+}
 
   @objc(closeMessagingView:rejecter:)
   func closeMessagingView(

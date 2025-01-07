@@ -181,21 +181,32 @@ class ZendeskNativeModule: NSObject {
   static func openMessageViewByPushNotification(
     _ userInfo: [AnyHashable: Any]? = nil,
     completionHandler: ((Bool) -> Void)? = nil
-  ) -> Void {
+) -> Void {
     guard let userInfo = userInfo ?? receivedUserInfo else {
-      completionHandler?(false)
-      return
-    }
-
-    PushNotifications.handleTap(userInfo) { viewController in
-      receivedUserInfo = nil
-      guard let rootController = RCTPresentedViewController(),
-            let viewController = viewController else {
-        completionHandler?(viewController == nil)
+        completionHandler?(false)
         return
-      }
-      rootController.show(viewController, sender: self)
-      completionHandler?(false)
     }
-  }
+    PushNotifications.handleTap(userInfo) { viewController in
+        receivedUserInfo = nil
+        guard let rootController = RCTPresentedViewController() else {
+            completionHandler?(false)
+            return
+        }
+
+        if let navigationController = rootController as? UINavigationController {
+            if let zendeskVC = viewController {
+                navigationController.pushViewController(zendeskVC, animated: true)
+            } else {
+                completionHandler?(false)
+            }
+        } else {
+            if let zendeskVC = viewController {
+                rootController.show(zendeskVC, sender: self)
+            } else {
+                completionHandler?(false)
+            }
+        }
+        completionHandler?(false)
+    }
+}
 }
