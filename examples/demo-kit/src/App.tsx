@@ -19,10 +19,6 @@ export function App(): React.ReactElement {
     },
   });
 
-  if (!isReady) {
-    return <LoadingView />;
-  }
-
   return (
     <SafeAreaView>
       <ScrollView>
@@ -33,6 +29,7 @@ export function App(): React.ReactElement {
         <Tags />
         <Notifications />
       </ScrollView>
+      {isReady ? null : <LoadingView />}
     </SafeAreaView>
   );
 }

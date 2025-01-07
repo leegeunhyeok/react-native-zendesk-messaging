@@ -144,7 +144,10 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
       return
     }
 
-    module.setConversationFields(fields.toHashMap())
+    fields.toHashMap()
+      .filterValues { it != null }
+      .mapValues { it.value!! }
+      .let { module.setConversationFields(it) }
   }
 
   @ReactMethod
@@ -197,7 +200,11 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   @ReactMethod
   fun handleNotification(remoteMessage: ReadableMap, promise: Promise) {
     try {
-      val messageData = remoteMessage.toHashMap().toMap() as Map<String, String>
+      val messageData: Map<String, String> = remoteMessage.toHashMap()
+        .filterValues { it is String }
+        .mapValues { it.value as String }
+        .toMap()
+
       module.handleNotification(
         context = reactContext,
         messageData = messageData,
@@ -216,7 +223,6 @@ class ZendeskMessagingModule(private val reactContext: ReactApplicationContext) 
   fun removeListeners(type: Int?) {
       // noop
   }
-
 
   companion object {
     const val NAME = "ZendeskMessaging"
