@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import type { PropsWithChildren } from 'react';
 
-interface SectionProps extends PropsWithChildren<{}> {
+interface SectionProps extends PropsWithChildren {
   title?: string;
   required?: boolean;
   hideSeparator?: boolean;
@@ -15,7 +15,7 @@ export const Section = ({
   title,
   required = false,
   hideSeparator = false,
-}: SectionProps) => (
+}: SectionProps): React.ReactElement => (
   <View style={styles.section}>
     {title ? (
       <Text style={styles.sectionTitle}>

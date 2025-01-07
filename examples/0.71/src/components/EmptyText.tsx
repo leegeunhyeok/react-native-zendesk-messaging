@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import type { TextProps } from 'react-native';
 
-export const EmptyText = ({ children: text }: TextProps) => (
+export const EmptyText = ({
+  children: text,
+}: TextProps): React.ReactElement => (
   <Text style={[styles.text, text ? styles.blueText : styles.emptyText]}>
     {text || '(Empty)'}
   </Text>

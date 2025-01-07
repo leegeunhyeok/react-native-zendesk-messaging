@@ -15,13 +15,13 @@ import { Section, Button, EmptyText } from './components';
 // Enter your Zendesk channel key
 const CHANNEL_KEY = 'YOUR_ZENDESK_CHANNEL_KEY_HERE';
 
-const LoadingView = () => (
+const LoadingView = (): React.ReactElement => (
   <View style={styles.loadingContainer}>
     <ActivityIndicator color="white" />
   </View>
 );
 
-const App = () => {
+const App = (): React.ReactElement => {
   const [token, setToken] = useState('');
   const [fieldId, setFieldId] = useState('');
   const [tag, setTag] = useState('');
@@ -42,62 +42,71 @@ const App = () => {
 
         setIsLoading(false);
       })
-      .catch((error) => console.error(error));
+      .catch((error: unknown) => console.error(error));
   }, []);
 
-  const handleChangeToken = (text: string) => setToken(text);
-  const handleChangeFieldId = (id: string) => setFieldId(id);
-  const handleChangeTag = (tag: string) => setTag(tag);
+  const handleChangeToken = (text: string): void => setToken(text);
+  const handleChangeFieldId = (id: string): void => setFieldId(id);
+  const handleChangeTag = (tag: string): void => setTag(tag);
 
-  const runner = async (fn: () => Promise<any>) => {
+  const runner = async (fn: () => Promise<unknown>): Promise<void> => {
     if (isLoading) return;
     setIsLoading(true);
 
     try {
       await fn();
     } catch (error) {
-      console.log(error);
-      Alert.alert((error as Error)?.message ?? 'unknown error');
+      if (error instanceof Error) {
+        console.log(error.message);
+        Alert.alert(error.message);
+      } else {
+        console.log(error);
+        Alert.alert('unknown error');
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
   // Zendesk methods
-  const handlePressLogin = () => runner(() => Zendesk.login(token));
-  const handlePressLogout = () => runner(() => Zendesk.logout());
-  const handlePressOpen = () => runner(() => Zendesk.openMessagingView());
-  const handlePressCount = () => {
+  const handlePressLogin = (): Promise<void> =>
+    runner(() => Zendesk.login(token));
+  const handlePressLogout = (): Promise<void> => runner(() => Zendesk.logout());
+  const handlePressOpen = (): Promise<void> =>
+    runner(() => Zendesk.openMessagingView());
+  const handlePressCount = (): Promise<void> =>
     runner(() =>
       Zendesk.getUnreadMessageCount().then((count) =>
-        Alert.alert(`unread count: ${count}`)
+        Alert.alert(`unread count: ${String(count)}`)
       )
     );
-  };
-  const handlePressSetFields = () => {
+
+  const handlePressSetFields = (): void => {
     if (!fieldId) {
       console.warn('field id is empty');
-      return
+      return;
     }
-    Zendesk.setConversationFields({ [fieldId]: 'react-native-zendesk-messaging' });
-    Alert.alert('setConversationFields: ' + fieldId);
+    Zendesk.setConversationFields({
+      [fieldId]: 'react-native-zendesk-messaging',
+    });
+    Alert.alert(`setConversationFields: ${fieldId}`);
   };
-  const handlePressClearFields = () => {
+  const handlePressClearFields = (): void => {
     Zendesk.clearConversationFields();
     Alert.alert('clearConversationFields');
-  }
-  const handlePressSetTags = () => {
+  };
+  const handlePressSetTags = (): void => {
     if (!tag) {
       console.warn('tag is empty');
       return;
     }
     Zendesk.setConversationTags([tag]);
-    Alert.alert('setConversationTags: ' + JSON.stringify([tag]));
+    Alert.alert(`setConversationTags: ${JSON.stringify([tag])}`);
   };
-  const handlePressClearTags = () => {
+  const handlePressClearTags = (): void => {
     Zendesk.clearConversationTags();
     Alert.alert('clearConversationTags');
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>

@@ -6,7 +6,10 @@ interface ButtonProps extends Omit<PressableProps, 'children'> {
   label: string;
 }
 
-export const Button = ({ label, ...restProps }: ButtonProps) => (
+export const Button = ({
+  label,
+  ...restProps
+}: ButtonProps): React.ReactElement => (
   <Pressable style={styles.button} {...restProps}>
     <Text style={styles.buttonLabel}>{label}</Text>
   </Pressable>
