@@ -2,6 +2,9 @@
   "name": "react-native-zendesk-messaging",
   "version": "0.3.0",
   "description": "Zendesk messaging SDK for React Native",
+  "workspaces": [
+    "examples/*"
+  ],
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -93,7 +96,7 @@
     "android": "2.13.0",
     "ios": "2.13.0"
   },
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@4.6.0",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
