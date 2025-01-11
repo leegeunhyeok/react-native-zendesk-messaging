@@ -1,5 +1,11 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 import { LoadingView } from './components';
 import { Authentication } from './features/Authentication';
 import { Chat } from './features/Chat';
@@ -8,9 +14,15 @@ import { Tags } from './features/Tags';
 import { Notifications } from './features/Notifications';
 import { useZendesk } from './hooks/useZendesk';
 
+const channelKey = Platform.select({
+  ios: '<IOS_CHANNEL_KEY>',
+  android: '<ANDROID_CHANNEL_KEY>',
+  default: '',
+});
+
 export function App(): React.ReactElement {
   const { isReady } = useZendesk({
-    channelKey: '',
+    channelKey,
     onInitialized() {
       console.log('Zendesk initialized');
     },
