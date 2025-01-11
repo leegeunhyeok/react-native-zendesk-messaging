@@ -61,7 +61,7 @@
     "@evilmartians/lefthook": "^1.5.0",
     "@faker-js/faker": "^8.1.0",
     "@react-native-community/eslint-config": "^3.0.2",
-    "@release-it/conventional-changelog": "^7.0.2",
+    "@release-it/conventional-changelog": "^10.0.0",
     "@types/jest": "^29.5.5",
     "@types/node": "^22",
     "@types/react": "~18.2.23",
@@ -109,6 +109,13 @@
     },
     "github": {
       "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "angular"
+        }
+      }
     }
   },
   "eslintConfig": {
