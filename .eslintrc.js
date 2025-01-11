@@ -33,5 +33,17 @@ module.exports = {
       files: ['**/?(*.)+(spec|test).ts?(x)'],
       extends: [require.resolve('@vercel/style-guide/eslint/jest')],
     },
+    {
+      files: ['examples/**/*.js?(x)', 'examples/**/*.ts?(x)'],
+      rules: {
+        'no-console': 'off',
+        'import/no-default-export': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'unicorn/filename-case': 'off',
+        '@typescript-eslint/no-shadow': 'off',
+        '@typescript-eslint/no-misused-promises': 'off',
+        '@typescript-eslint/no-confusing-void-expression': 'off',
+      },
+    },
   ],
 };

@@ -9,7 +9,7 @@ We want this community to be friendly and respectful to each other. Please follo
 To get started with the project, run `yarn` in the root directory to install the required dependencies for each package:
 
 ```sh
-yarn
+yarn && yarn workspaces foreach --all run bootstrap
 ```
 
 > While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development.
@@ -19,19 +19,31 @@ While developing, you can run the [example app](/example/) to test your changes.
 To start the packager:
 
 ```sh
-yarn example start
+# React Native 0.71
+yarn workspace example071 run start
+
+# React Native 0.77
+yarn workspace example077 run start
 ```
 
 To run the example app on Android:
 
 ```sh
-yarn example android
+# React Native 0.71
+yarn workspace example071 run android
+
+# React Native 0.77
+yarn workspace example077 run android
 ```
 
 To run the example app on iOS:
 
 ```sh
-yarn example ios
+# React Native 0.71
+yarn workspace example071 run ios
+
+# React Native 0.77
+yarn workspace example077 run ios
 ```
 
 Make sure your code passes TypeScript and ESLint. Run the following to verify:
@@ -64,7 +76,6 @@ yarn test
 To edit the Objective-C or Swift files, open `example/ios/ZendeskMessagingExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-zendesk-messaging`.
 
 To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `react-native-zendesk-messaging` under `Android`.
-
 
 ### Commit message convention
 
@@ -106,9 +117,9 @@ The `package.json` file contains various scripts for common tasks:
 - `yarn lint`: lint files with ESLint.
 - `yarn lint:swift`: lint files with SwiftLint.
 - `yarn test`: run unit tests with Jest.
-- `yarn example start`: start the Metro server for the example app.
-- `yarn example android`: run the example app on Android.
-- `yarn example ios`: run the example app on iOS.
+- `yarn workspace <example-name> start`: start the Metro server for the example app.
+- `yarn workspace <example-name> android`: run the example app on Android.
+- `yarn workspace <example-name> ios`: run the example app on iOS.
 
 ### Sending a pull request
 

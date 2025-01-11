@@ -1,0 +1,23 @@
+{
+  "name": "example071",
+  "private": true,
+  "scripts": {
+    "bootstrap": "yarn pod:install",
+    "pod:install": "cd ios && pod install",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "demo-kit": "workspace:^",
+    "react": "18.2.0",
+    "react-native": "0.71.19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@types/react": "^18.0.24",
+    "metro-react-native-babel-preset": "0.73.10"
+  }
+}
