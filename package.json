@@ -1,6 +1,6 @@
 {
   "name": "react-native-zendesk-messaging",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Zendesk messaging SDK for React Native",
   "workspaces": [
     "examples/*"
