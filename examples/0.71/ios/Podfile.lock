@@ -329,7 +329,7 @@ PODS:
   - React-jsinspector (0.71.19)
   - React-logger (0.71.19):
     - glog
-  - react-native-zendesk-messaging (0.3.0):
+  - react-native-zendesk-messaging (0.3.1):
     - React-Core
     - ZendeskSDKMessaging (= 2.13.0)
   - React-perflogger (0.71.19)
@@ -642,7 +642,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 7263801e44e004967685dd40672bfcedcda00834
   React-jsinspector: e591d9ecb571456fc929ee10409d8847a442d6a7
   React-logger: 70ddbe0e07179c8adb94c4bffc36c6abc952d3d4
-  react-native-zendesk-messaging: d30054b7fafdaa8d4c3fee6f92777351b2ac5e73
+  react-native-zendesk-messaging: 80f4deda6d0839a0a420e09de2b738e80f12e82b
   React-perflogger: 0ba097528e325435aca94b32b5330f58f6acb6fb
   React-RCTActionSheet: 805b3a83f3dd7ae5a1213ea9df0ed748eeb74b85
   React-RCTAnimation: 2a0233681dee47e468302b8233652b35b68329cb

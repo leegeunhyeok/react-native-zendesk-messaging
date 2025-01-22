@@ -1211,7 +1211,7 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-zendesk-messaging (0.3.0):
+  - react-native-zendesk-messaging (0.3.1):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -1797,7 +1797,7 @@ SPEC CHECKSUMS:
   React-logger: 3dc0ffac00a531441ae6fb6cc8108ba374c8e8d1
   React-Mapbuffer: ade5ce90a8643af61bd7365c51a6e957b5722045
   React-microtasksnativemodule: c314f95dc827b8fa3765372bb847b477b7663065
-  react-native-zendesk-messaging: 0c41d31fd063c75893d1fdffdb9b173f6762451e
+  react-native-zendesk-messaging: 2212013bb36e6cad1a939540c362d093f0d3979b
   React-nativeconfig: b9c086f83aba945dad592d2556fe2b983f541032
   React-NativeModulesApple: acb8da00a222da8da6e458a9dfae63cc264780c6
   React-perflogger: 85a817dc96114c0df3e0d5a700688cd0a5643a9d
