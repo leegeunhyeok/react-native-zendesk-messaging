@@ -152,7 +152,6 @@ class ZendeskMessaging: RCTEventEmitter {
       resolve(nil)
     }
   }
-}
 
   @objc(closeMessagingView:rejecter:)
   func closeMessagingView(
